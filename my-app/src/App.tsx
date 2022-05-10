@@ -1,26 +1,24 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-
-function App() {
+import styles from './App.module.scss';
+import { Routes, Route } from 'react-router-dom';
+import WelcomePage from './components/WelcomPage/WelcomePage';
+import HomePage from './components/HomePage/HopePage';
+import AuthPage from './components/AuthPage/AuthPage';
+import Footer from './components/Footer/Footer';
+import Header from './components/Header/Header';
+// import './components/Header/Header.module.css';
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className={styles.appWrapp}>
+      <Header />
+      <Routes>
+        <Route path="/" element={<WelcomePage />} />
+        <Route path="/AuthPage" element={<AuthPage />} />
+        <Route path="/HomePage" element={<HomePage />} />
+      </Routes>
+      <Footer />
     </div>
   );
-}
+};
 
 export default App;
