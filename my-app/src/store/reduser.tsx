@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction, createAsyncThunk } from '@reduxjs/toolkit';
 export type develpersType = {
   id: number;
   mentor?: true;
@@ -20,6 +20,15 @@ const initialState: CounterState = {
   ],
   page: 'WelcomePage',
 };
+
+// export const fetchAll = createAsyncThunk(
+//   'install/fetchItemsPag',
+//   async function (e: React.ChangeEvent<HTMLSelectElement>) {
+//     const response = await fetch(`http://127.0.0.1:4000/docs`);
+//     const data: string = await response.json();
+//     return data;
+//   }
+// );
 
 const mainSlice = createSlice({
   name: 'main',
