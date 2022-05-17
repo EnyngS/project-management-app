@@ -7,7 +7,7 @@ import git from '../../common/img/git.png';
 import { develpersType } from '../../store/reduser';
 
 const Footer = () => {
-  const developers = useAppSelector((store) => store.developers);
+  const developers = useAppSelector((store) => store.main.developers);
   return (
     <footer>
       <div className={style.devBox}>
