@@ -7,10 +7,10 @@ const Header = () => {
   return (
     <header>
       <div className={style.boxBtn}>
-        <Link className={style.welBtn} to={'/AuthPage'}>
+        <Link className={style.welBtn} to={'/login'}>
           log in
         </Link>
-        <Link className={style.welBtn} to={'/AuthPage'}>
+        <Link className={style.welBtn} to={'/signup'}>
           sing up
         </Link>
         {/* <Link className={style.welBtn} to={'/AuthPage'}>Go to Main Page</Link> */}

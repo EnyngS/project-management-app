@@ -9,7 +9,6 @@ export type develpersType = {
 };
 interface CounterState {
   developers: develpersType[];
-  page: string;
 }
 
 const initialState: CounterState = {
@@ -18,17 +17,7 @@ const initialState: CounterState = {
     { id: 2, name: 'Vladislav', url: { git: 'https://github.com/EnyngS' } },
     { id: 3, name: 'Miculich Fiodar', url: { git: 'https://github.com/Mikulich-Fedor' } },
   ],
-  page: 'WelcomePage',
 };
-
-// export const fetchAll = createAsyncThunk(
-//   'install/fetchItemsPag',
-//   async function (e: React.ChangeEvent<HTMLSelectElement>) {
-//     const response = await fetch(`http://127.0.0.1:4000/docs`);
-//     const data: string = await response.json();
-//     return data;
-//   }
-// );
 
 const mainSlice = createSlice({
   name: 'main',

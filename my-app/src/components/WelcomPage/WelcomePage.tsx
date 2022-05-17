@@ -1,10 +1,13 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import style from './WelcomePage.module.scss';
 
 const WelcomePage = () => {
+	const state = useSelector((state: any)=> state.auth.user)
+	console.log(state)
   return (
-    <div className={style.welcome}>
-      <div className={style.welcome__title}>
+    <div className={style.welcomePage}>
+      <div className={style.title}>
         <div>
           <h1>
             Welcome in <b>Rs PMApp</b>

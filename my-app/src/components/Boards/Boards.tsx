@@ -12,7 +12,7 @@ const Boards = () => {
     title: 'Homework tasks',
     description: 'My board tasks',
   };
-  const boards = useAppSelector((store) => store.sliceBoards.boards);
+  const boards = useAppSelector((store) => store.boart);
   const dispatch = useAppDispatch();
   useEffect(() => {
     //  dispatch(PostBoards(fakeData));

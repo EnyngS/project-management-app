@@ -1,13 +1,12 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+// import { useSelector } from 'react-redux';
 import { useAppSelector } from '../../store/store';
-import { useAppDispatch } from '../../store/store';
 import style from './Footer.module.scss';
 import git from '../../common/img/git.png';
 import { develpersType } from '../../store/reduser';
 
 const Footer = () => {
-  const developers = useAppSelector((store) => store.mainSlice.developers);
+  const developers = useAppSelector((store) => store.main.developers);
   return (
     <footer>
       <div className={style.devBox}>
