@@ -1,18 +1,13 @@
 import React, { FC } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
 import style from './AuthPage.module.scss';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import { useSelector } from 'react-redux';
 
 type Iprops = {
 	addUser: (param: object) => object
 }
 
 const AuthPage: FC <Iprops> = ({addUser}) => {
-
-	const navigate = useNavigate()
-
 
 	 const formik = useFormik({
 		initialValues: {
@@ -45,7 +40,6 @@ const AuthPage: FC <Iprops> = ({addUser}) => {
 				email: '',
 				password: '',
 			}
-			navigate('/main')
 		},
 	 });
   return (

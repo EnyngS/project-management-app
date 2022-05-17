@@ -1,12 +1,14 @@
 import React, { FC, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { signin } from '../../store/authReduser';
 import AuthPage from './AuthPage/AuthPage';
 const axios = require('axios').default;
 
 const AuthPageContainer:FC = () => {
 	const dispatch = useDispatch()
+	const navigate = useNavigate()
 
 	interface IUser {
 		isAuth: boolean;
@@ -56,7 +58,8 @@ const AuthPageContainer:FC = () => {
 						email: '',
 						password: '',
 						token: ''
-					})
+					}),
+					navigate('/main')
 				)
 			})
 			.catch((error: any) => {

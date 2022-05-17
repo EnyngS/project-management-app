@@ -10,7 +10,6 @@ const HomePage = () => {
 	const dispatch = useDispatch()
   return (
     <div className={style.homePage}>
-
 		 <span>login: {state.login}</span><br />
 		 <span>password: {state.password}</span><br />
 		 {/* <span>token: {state.token}</span>*/}

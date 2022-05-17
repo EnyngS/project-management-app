@@ -4,10 +4,12 @@ import { ThunkAction } from 'redux-thunk';
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 import mainSlice from './reduser';
 import authReduser from './authReduser'
+import sliceBoards from './sliceBoards';
 
 const roodReducer = combineReducers({
 	main: mainSlice,
 	auth: authReduser,
+	boart: sliceBoards,
  }) 
 
 const store = configureStore({ reducer: roodReducer });

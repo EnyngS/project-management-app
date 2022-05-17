@@ -2,14 +2,13 @@ import React, { FC } from 'react';
 import style from './LoginPage.module.scss';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import { useNavigate } from 'react-router-dom';
 
 type Iprops = {
 	addUser: (param: object) => object
 }
 
 const LoginPage: FC <Iprops> = ({addUser}) => {
-	let navigate = useNavigate();
+
 	
 	 const formik = useFormik({
 		initialValues: {
@@ -38,7 +37,6 @@ const LoginPage: FC <Iprops> = ({addUser}) => {
 				email: '',
 				password: '',
 			}
-			navigate('/main')
 		},
 	 });
   return (
