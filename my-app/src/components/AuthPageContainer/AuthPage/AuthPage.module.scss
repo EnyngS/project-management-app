@@ -1,16 +1,16 @@
 .AuthPageWrapp{
 	display: flex;
-	height: 100vh;
+	height: 75vh;
 	justify-content: center;
 	align-items: center;
-	background: rgba(215, 255, 252, 0.949);
+	background: rgba(255, 255, 255, 0.949);
 
 	.formWrapp{
 		display: flex;
 		position: relative;
 		overflow: hidden;
-		background-color: rgba(239, 239, 239, 0.82);
-		height: 500px;
+		background-color: rgba(255, 255, 255, 0.82);
+		height: 400px;
 		width: 800px;
 		border-radius: 5px;
 		box-shadow: 0 0 10px rgba(0, 0, 0, 0.604);
@@ -21,7 +21,7 @@
 			display: flex;
 			flex-direction: column;
 			width: 300px;
-			background-color: rgba(7, 132, 84, 0.637);
+			background-color: rgba(216, 148, 0, 0.837);
 			
 			h4{
 				text-align: center;
@@ -106,7 +106,7 @@
 					justify-content: center;
 					border-radius: 20px;
 					border: none;
-					background-color: rgba(7, 132, 84, 0.637);
+					background-color: rgba(216, 148, 0, 0.837);
 					color: #fff;
 					font-size: 16px;
 					line-height: 13px;
