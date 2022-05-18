@@ -23,21 +23,22 @@ const initialState = {
   boards: BoardPrev,
 };
 // -----когда будет авторизация
-// export const PostBoards = createAsyncThunk('boadrs/PostBoards', async function (e: BoardPrevType) {
-//   const response = await fetch(`https://quiet-bastion-49623.herokuapp.com/boards`, {
-//     method: 'POST', // или 'PUT'
-//     body: JSON.stringify(e), // данные могут быть 'строкой' или {объектом}!
-//     headers: {
-//       'Content-Type': 'application/json',
-//     },
-//   });
-// });
+export const PostBoards = createAsyncThunk('boadrs/PostBoards', async function (e: BoardPrevType) {
+  const response = await fetch(`https://quiet-bastion-49623.herokuapp.com/boards`, {
+    method: 'POST', // или 'PUT'
+    body: JSON.stringify(e), // данные могут быть 'строкой' или {объектом}!
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+});
 // ----------------------------
 export const GetAllBoards = createAsyncThunk('boadrs/GetAllBoards', async function () {
   const response = await fetch(`https://quiet-bastion-49623.herokuapp.com/boards`, {
     method: 'GET', // или 'PUT'
   });
   const data: BoardPrevType[] = await response.json();
+  return data;
   return BoardPrev;
 });
 
