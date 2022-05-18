@@ -3,16 +3,18 @@ import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { signin } from '../../store/authReduser';
+import Error from '../Error/Error';
 import LoginPage from './LoginPage/LoginPage';
 const axios = require('axios').default;
 
 const LoginPageContainer:FC = () => {
 	const state = useSelector((state: any) => state.auth)
 	const dispatch = useDispatch()
-	let navigate = useNavigate();
+	const navigate = useNavigate()
 
 	interface IUser {
 		isAuth: boolean;
+		id: string;
 		username: string;
 		login: string,
 		email: string,
@@ -24,6 +26,7 @@ const LoginPageContainer:FC = () => {
 
 	[user, setUser] = useState({
 		isAuth: false,
+		id: '',
 		username: '',
 		login: '',
 		email: '',
@@ -32,21 +35,35 @@ const LoginPageContainer:FC = () => {
 	});
 
 	useEffect( () => {
-
 		if(user.isAuth){
 			axios.post('https://quiet-bastion-49623.herokuapp.com/signin',{
 			"login": user.login,
 			"password": user.password,
 			})
 			.then((res:any)=>{
-				let result ={
+				setUser({
 					...user,
-					token: res.data.token 
+					token: res.data.token
+				})
+				axios.get(`https://quiet-bastion-49623.herokuapp.com/users`,{
+				headers:{
+					"Authorization": `Bearer ${res.data.token}`
 				}
+			})
+			.then((res:any) => {
+				let [userId] = res.data.filter((el: any) => (el.login === user.login))
+				let resultUser = {
+					...user,
+					id: userId.id,
+					username: userId.name,
+					login: userId.login,
+				}
+
 				return(
-					dispatch(signin(result)),
+					dispatch(signin(resultUser)),
 					setUser({
 						isAuth: false,
+						id: '',
 						username: '',
 						login: '',
 						email: '',
@@ -56,8 +73,15 @@ const LoginPageContainer:FC = () => {
 					navigate('/main')
 				)
 			})
+			.catch((er: any)=> {
+				console.log(er)
+			})
+			})
 			.catch((error: any) => {
-				console.log(error)
+				return(
+					navigate('/error'),
+					<Error {...error.response.data.message} />
+				)
 			})
 		}
 		

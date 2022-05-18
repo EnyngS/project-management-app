@@ -3,7 +3,6 @@ import style from './Error.module.scss'
 
 const Error: FC = () => {
 	return(<div className={style.error}>
-		Error
 	</div>)
 }
 

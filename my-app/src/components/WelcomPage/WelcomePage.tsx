@@ -4,7 +4,6 @@ import style from './WelcomePage.module.scss';
 
 const WelcomePage = () => {
 	const state = useSelector((state: any)=> state.auth.user)
-	console.log(state)
   return (
     <div className={style.welcomePage}>
       <div className={style.promo1}>

@@ -12,6 +12,7 @@ const AuthPageContainer:FC = () => {
 
 	interface IUser {
 		isAuth: boolean;
+		id: string;
 		username: string;
 		login: string,
 		email: string,
@@ -23,6 +24,7 @@ const AuthPageContainer:FC = () => {
 
 	[user, setUser] = useState({
 		isAuth: false,
+		id:'',
 		username: '',
 		login: '',
 		email: '',
@@ -40,6 +42,7 @@ const AuthPageContainer:FC = () => {
 				"password": user.password,
 			})
 			.then(function (response: any) {
+				setUser( user.id = response.data.id)
 				axios.post('https://quiet-bastion-49623.herokuapp.com/signin',{
 					"login": user.login,
 					"password": user.password,
@@ -53,6 +56,7 @@ const AuthPageContainer:FC = () => {
 					dispatch(signin(result)),
 					setUser({
 						isAuth: false,
+						id: '',
 						username: '',
 						login: '',
 						email: '',
