@@ -17,6 +17,7 @@ const LoginPage: FC <Iprops> = ({addUser}) => {
 			login: '',
 			email: '',
 			password: '',
+			token: ''
 		},
 		validationSchema: Yup.object({
 			login: Yup.string()
@@ -36,6 +37,7 @@ const LoginPage: FC <Iprops> = ({addUser}) => {
 				login: '',
 				email: '',
 				password: '',
+				token: ''
 			}
 		},
 	 });

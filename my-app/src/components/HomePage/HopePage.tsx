@@ -1,4 +1,5 @@
-import React from 'react';
+import axios from 'axios';
+import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -8,13 +9,17 @@ import style from './HomePage.module.scss';
 const HomePage = () => {
 	const state = useSelector((state: any)=> state.auth.user)
 	const dispatch = useDispatch()
+
   return (
     <div className={style.homePage}>
+		 <div className={style.user}>
 		 <span>login: {state.login}</span><br />
 		 <span>password: {state.password}</span><br />
-		 {/* <span>token: {state.token}</span>*/}
+		 <span>id: {state.id} </span>
+		 <span>name: {state.username}</span>
+		 <span>token: {state.token}</span>
+		 </div>
       <Link to={'/'} onClick={()=> { dispatch(exit({})) }}>Выйти</Link>
-		{console.log(state)}
     </div>
   );
 };

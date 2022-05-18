@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 type Iuser = {
 	isAuth: boolean,
+	id: string,
 	username: string,
 	login: string,
 	email: string,
@@ -15,6 +16,7 @@ interface CounterState {
 const initialState: CounterState = {
 	user: {
 		isAuth: false,
+		id: '',
 		username: '',
 		login: '',
 		email: '',
@@ -30,21 +32,21 @@ const authReduser = createSlice({
   reducers: {
 	signin: (state,actions) => {
 		state.user.isAuth = actions.payload.isAuth
+		state.user.id = actions.payload.id
 		state.user.username = actions.payload.username
 		state.user.login = actions.payload.login
 		state.user.email = actions.payload.email
 		state.user.password = actions.payload.password
 		state.user.token = actions.payload.token
-		console.log('log in прошел')
 	},
 	exit: (state, actions) => {
 		state.user.isAuth = false
+		state.user.id = ''
 		state.user.username = ''
 		state.user.login = ''
 		state.user.email = ''
 		state.user.password = ''
 		state.user.token = ''
-		console.log('exit')
 	}
   },
 
