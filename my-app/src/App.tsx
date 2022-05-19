@@ -9,7 +9,9 @@ const App = () => {
   return (
     <div className={styles.appWrapp}>
       <Header />
-      <AppRouter />
+		<div className={styles.content}>
+		<AppRouter />
+		</div>
       <Footer />
     </div>
   );

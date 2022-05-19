@@ -38,6 +38,26 @@ const WelcomePage = () => {
 				</p>
 			</div>
       </div>
+		<div className={style.promo4}>
+			<div>
+				<h2>Lorem ipsum dolor sit</h2>
+				<p>
+						Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+						Iusto placeat voluptas quasi soluta quis, nisi incidunt
+						 magni quos obcaecati ad pariatur voluptatibus autem alias illo dolorem dicta ipsa et fuga.
+				</p>
+			</div>
+      </div>
+		<div className={style.promo5}>
+			<div>
+				<h2>Lorem ipsum dolor sit</h2>
+				<p>
+						Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+						Iusto placeat voluptas quasi soluta quis, nisi incidunt
+						 magni quos obcaecati ad pariatur voluptatibus autem alias illo dolorem dicta ipsa et fuga.
+				</p>
+			</div>
+      </div>
     </div>
   );
 };
