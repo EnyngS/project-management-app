@@ -1,11 +1,13 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import styles from './App.module.scss';
 import Footer from './components/Footer/Footer';
 import Header from './components/Header/Header';
 import AppRouter from './router/AppRouter'
 
-
 const App = () => {
+	const user = useSelector((state:any) => state.auth.user)
+	console.log(user)
   return (
     <div className={styles.appWrapp}>
       <Header />

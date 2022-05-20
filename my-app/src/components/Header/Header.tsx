@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-// let styles = require("./Header.module.css");
-// import './Header.module.css';
+import { useGlobalContext } from '../../context/context';
 import style from './Header.module.scss';
 
 
 const Header = () => {
 	const [ scroll ,setScroll] = useState('')
+	
+	// const {language} = useGlobalContext()
+	// console.log(language)
 
 	useEffect(()=>{
 		document.addEventListener('scroll', scrollHendler)
