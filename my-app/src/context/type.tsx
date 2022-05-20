@@ -1,3 +1,12 @@
 export type Context = {
-	language : object
+	ru: {
+		header: {
+			btn: [string,string]
+		}
+	};
+	en: {
+		header: {
+			btn: [string,string]
+		}
+	}
 }
