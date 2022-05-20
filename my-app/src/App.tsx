@@ -6,7 +6,7 @@ import Header from './components/Header/Header';
 import AppRouter from './router/AppRouter'
 
 const App = () => {
-	const user = useSelector((state:any) => state.auth.user)
+	const user = useSelector((state:any) => state.settings)
 	console.log(user)
   return (
     <div className={styles.appWrapp}>

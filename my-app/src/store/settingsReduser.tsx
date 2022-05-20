@@ -14,11 +14,11 @@ const settingsReduser = createSlice({
   name: 'settings',
   initialState,
   reducers: {
-    language: (state, actions) => {
-      state.lang = actions.payload.lang
+    actionLeng: (state, actions) => {
+      state.lang = actions.payload
     },
   },
 });
 
-export const { language } = settingsReduser.actions;
+export const { actionLeng } = settingsReduser.actions;
 export default settingsReduser.reducer;

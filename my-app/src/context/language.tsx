@@ -1,10 +1,14 @@
-const language = {
-	header: {
-		ru:{
-			btn: ['Войти','Регистрация']
-		},
-		en: {
-			btn: ['login','singup']
+import { Context } from "./type"
+
+const language : Context = {
+	ru:{
+		header: {
+			btn: ['Войти','Регистрация'],
+		}
+	},
+	en: {
+		header: {
+			btn: ['login','singup'],
 		}
 	},
 }
