@@ -8,29 +8,36 @@ import style from './HomePage.module.scss';
 import Boards from '../Boards/Boards';
 
 const HomePage = () => {
-  const state = useSelector((state: any) => state.auth.user);
-  const dispatch = useDispatch();
+  //   const state = useSelector((state: any) => state.auth.user);
+  //   const dispatch = useDispatch();
 
   return (
     <div className={style.homePage}>
-      <div className={style.user}>
-        <span>login: {state.login}</span>
-        <br />
-        <span>password: {state.password}</span>
-        <br />
-        <span>id: {state.id} </span>
-        <span>name: {state.username}</span>
-        <span>token: {state.token}</span>
-      </div>
-      <Link
-        to={'/'}
-        onClick={() => {
-          dispatch(exit({}));
-        }}
-      >
-        Выйти
-      </Link>
+      <Boards />
+
+      {/* {user.name}
+	Home page <Link to={'/'}>Выйти</Link> */}
     </div>
+    //  <div className={style.homePage}>
+    //    <div className={style.user}>
+    //      <span>login: {state.login}</span>
+    //      <br />
+    //      <span>password: {state.password}</span>
+    //      <br />
+    //      <span>id: {state.id} </span>
+    //      <span>name: {state.username}</span>
+    //      <span>token: {state.token}</span>
+    //    </div>
+    //    <Link
+    //      to={'/'}
+    //      onClick={() => {
+    //        dispatch(exit({}));
+    //      }}
+    //    >
+    //      Выйти
+    //    </Link>
+    //  </div>
+
     //  <div className={style.homePage}>
     //    <span>login: {state.login}</span>
     //    <br />

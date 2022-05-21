@@ -9,7 +9,7 @@ import sliceBoards from './sliceBoards';
 const roodReducer = combineReducers({
   main: mainSlice,
   auth: authReduser,
-  boart: sliceBoards,
+  boards: sliceBoards,
 });
 
 const store = configureStore({ reducer: roodReducer });

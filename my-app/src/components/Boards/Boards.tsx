@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import style from './Boards.module.scss';
 import { useAppSelector } from '../../store/store';
 import { useAppDispatch } from '../../store/store';
-import { PostBoards } from '../../store/sliceBoards';
+// import { PostBoards } from '../../store/sliceBoards';
 import { BoardPrevType } from '../../store/sliceBoards';
 
 const Boards = () => {
@@ -12,7 +12,7 @@ const Boards = () => {
     title: 'Homework tasks',
     description: 'My board tasks',
   };
-  const boards = useAppSelector((store) => store.boards);
+  const boards = useAppSelector((store) => store.boards.boadrs);
   const dispatch = useAppDispatch();
   useEffect(() => {
     //  dispatch(PostBoards(fakeData));
