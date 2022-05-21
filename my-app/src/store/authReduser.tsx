@@ -1,17 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-
-type Iuser = {
-	isAuth: boolean,
-	id: string,
-	username: string,
-	login: string,
-	email: string,
-	password: string,
-	token: string,
-};
-interface CounterState {
-	user: Iuser
-}
+import { CounterState } from './type/authReduser';
 
 const initialState: CounterState = {
 	user: {
@@ -40,13 +28,7 @@ const authReduser = createSlice({
 		state.user.token = actions.payload.token
 	},
 	exit: (state, actions) => {
-		state.user.isAuth = false
-		state.user.id = ''
-		state.user.username = ''
-		state.user.login = ''
-		state.user.email = ''
-		state.user.password = ''
-		state.user.token = ''
+		state.user = initialState.user
 	}
   },
 
