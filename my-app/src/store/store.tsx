@@ -1,15 +1,22 @@
-import { configureStore, Action } from '@reduxjs/toolkit';
 import { ThunkAction } from 'redux-thunk';
-// import counterReducer, { initialState } from './slice';
+
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 
-import mainSlice from './reduser';
-import sliceBoards from './sliceBoards';
-import sliceUsers from './sliceUsers';
+import { configureStore, combineReducers } from '@reduxjs/toolkit';
+import settingsReduser from './settingsReduser';
+import authReduser from './authReduser';
 
-const store = configureStore({ reducer: { mainSlice, sliceBoards, sliceUsers } });
+import sliceBoards from './sliceBoards';
+
+const roodReducer = combineReducers({
+  settings: settingsReduser,
+  auth: authReduser,
+  boart: sliceBoards,
+});
+
+const store = configureStore({ reducer: roodReducer });
+
 export type AppDispatch = typeof store.dispatch;
 export const useAppDispatch = () => useDispatch<AppDispatch>();
 export const useAppSelector: TypedUseSelectorHook<any> = useSelector;
-
 export default store;
