@@ -1,14 +1,9 @@
-import axios from 'axios';
-import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import React from 'react';
 import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
-import { exit } from '../../store/authReduser';
 import style from './HomePage.module.scss';
 
 const HomePage = () => {
-	const state = useSelector((state: any)=> state.auth.user)
-	const dispatch = useDispatch()
+	const state:any = useSelector((state: any)=> state.auth.user)
 
   return (
     <div className={style.homePage}>
@@ -19,7 +14,7 @@ const HomePage = () => {
 		 <span>name: {state.username}</span>
 		 <span>token: {state.token}</span>
 		 </div>
-      <Link to={'/'} onClick={()=> { dispatch(exit({})) }}>Выйти</Link>
+
     </div>
   );
 };
