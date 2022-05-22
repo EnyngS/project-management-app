@@ -15,6 +15,17 @@ header{
 		display: flex;
 		align-items: center;
 		margin: 0 20px;
+		select{
+			border: none;
+			background: none;
+			outline: none;
+			font-weight: 100;
+			font-size: 20px;
+			line-height: 17px;
+			margin: 0 20px;
+			color: rgba(255, 174, 0, 0.859);
+		}
+		
 	}
 	.welBtn {
 		display: flex;

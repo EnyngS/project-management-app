@@ -1,14 +1,17 @@
-import React, { FC } from 'react';
+import React, { FC, useContext } from 'react';
 import style from './LoginPage.module.scss';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
+import { GlobalContext } from '../../../context/context';
+import { useSelector } from 'react-redux';
 
 type Iprops = {
 	addUser: (param: object) => object
 }
 
 const LoginPage: FC <Iprops> = ({addUser}) => {
-
+	const en = useSelector((state: any)=> state.settings.lang)
+	const lang: any = useContext(GlobalContext)
 	
 	 const formik = useFormik({
 		initialValues: {
@@ -45,7 +48,7 @@ const LoginPage: FC <Iprops> = ({addUser}) => {
     <div className={style.AuthPageWrapp}>
 		 <div className={style.formWrapp}>
 			 <div className={style.leftSide}>
-				 <h4>Sign in</h4>
+				 <h4>{lang[en].LoginAuthPage.btn[0]}</h4>
 				 <div className={`${style.circle}`}></div>
 				 <div className={`${style.circle} ${style.c2}`}></div>
 				 <div className={`${style.circle} ${style.c3}`}></div>
@@ -88,7 +91,7 @@ const LoginPage: FC <Iprops> = ({addUser}) => {
 							}
 						</div>
 						</label>
-						<button type="submit">Sign in</button>
+						<button type="submit">{lang[en].LoginAuthPage.btn[0]}</button>
 					</form>
 			 </div>
 		 </div>
