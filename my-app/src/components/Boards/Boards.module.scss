@@ -27,6 +27,7 @@
   flex-wrap: wrap;
   flex-grow: 1;
   &__item {
+    position: relative;
     margin: 20px;
     width: 200px;
     height: 400px;
@@ -45,12 +46,22 @@
       transition: all 0.5s;
       transform: rotate(-6deg);
     }
+    .close {
+      right: 5px;
+      top: 5px;
+      position: absolute;
+      z-index: 10000;
+      &:hover {
+        cursor: pointer;
+      }
+    }
   }
   &__title {
     font-size: 22px;
     padding-bottom: 20px;
   }
   &__desc {
+    max-width: 180px;
     font-size: 18px;
   }
 }
