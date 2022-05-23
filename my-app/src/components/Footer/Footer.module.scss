@@ -7,7 +7,9 @@ footer {
     display: flex;
     justify-content: space-around;
     align-items: center;
+	 max-width: 1250px;
 	 width: 100%;
+	 margin: 0 auto;
   }
   .active {
     color: yellow;

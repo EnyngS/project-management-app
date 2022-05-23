@@ -6,6 +6,7 @@ import { GlobalContext } from '../../context/context';
 import { exit } from '../../store/authReduser';
 import { actionLeng } from '../../store/settingsReduser';
 import style from './Header.module.scss';
+import MenuComponent from './MenuComponent/MenuComponent';
 
 
 const Header = () => {
@@ -14,7 +15,6 @@ const Header = () => {
 	const auth:boolean = useSelector((state:any)=> state.auth.user.isAuth)
 	const en:any = useSelector((state:any) => state.settings.lang)
 	const lang:any = useContext(GlobalContext)
-	console.log(auth)
 
 	useEffect(()=>{
 		document.addEventListener('scroll', scrollHendler)
@@ -47,7 +47,7 @@ const Header = () => {
 					auth?
 						<>
 							{/* <Link className={style.welBtn} to={'/AuthPage'}>Go to Main Page</Link> */}
-							<Link className={style.welBtn} to={'/'} onClick={()=> { dispatch(exit({})) }}>{lang[en].header.btn[3]}</Link>
+							<MenuComponent />
 						</>
 					:
 						<>
