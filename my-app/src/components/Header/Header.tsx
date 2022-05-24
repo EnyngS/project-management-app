@@ -52,7 +52,7 @@ const Header = (props:any) => {
 						<>
 						{(location.pathname === '/main')
 							?<></>
-							:<Link className={style.welBtn} to={'/main'}>Go to Main Page</Link>
+							:<Link className={style.welBtn} to={'/main'}>{lang[en].header.btn[2]}</Link>
 						}
 							<MenuComponent />
 						</>

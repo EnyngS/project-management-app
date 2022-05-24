@@ -27,8 +27,10 @@ const authReduser = createSlice({
 		state.user.password = actions.payload.password
 		state.user.token = actions.payload.token
 	},
+	
 	exit: (state, actions) => {
 		state.user = initialState.user
+		localStorage.removeItem('rsApp')
 	}
   },
 

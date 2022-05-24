@@ -3,7 +3,7 @@ import { Context } from "./type"
 const language : Context = {
 	ru:{
 		header: {
-			btn: ['Войти','Регистрация','Вернуться в приложение','Выйти'],
+			btn: ['Войти','Регистрация','Вернуться в приложение','Выйти','Новый борд'],
 		},
 		welcomePage: {
 			promo1: [
@@ -22,7 +22,7 @@ const language : Context = {
 	},
 	en: {
 		header: {
-			btn: ['login','singup','Go to Main Page','Log out'],
+			btn: ['login','singup','Go to Main Page','Log out','New board'],
 		},
 		welcomePage: {
 			promo1: [
