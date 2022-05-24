@@ -1,14 +1,12 @@
 import React, { FC, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { signin } from '../../store/authReduser';
-import Error from '../Error/Error';
+import { errorRed } from '../../store/settingsReduser';
 import LoginPage from './LoginPage/LoginPage';
 const axios = require('axios').default;
 
 const LoginPageContainer: FC = () => {
-  const state = useSelector((state: any) => state.auth);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -42,7 +40,6 @@ const LoginPageContainer: FC = () => {
           password: user.password,
         })
         .then((res: any) => {
-          localStorage.setItem('token', res.data.token);
           setUser({
             ...user,
             token: res.data.token,
@@ -61,8 +58,8 @@ const LoginPageContainer: FC = () => {
                 username: userId.name,
                 login: userId.login,
               };
-
               return (
+					  localStorage.setItem('rsApp', `${JSON.stringify(resultUser)}` ),
                 dispatch(signin(resultUser)),
                 setUser({
                   isAuth: false,
@@ -76,12 +73,14 @@ const LoginPageContainer: FC = () => {
                 navigate('/main')
               );
             })
-            .catch((er: any) => {
-              console.log(er);
+            .catch((error: any) => {
+					dispatch(errorRed(error.message))
+					navigate('/error')
             });
         })
-        .catch((error: any) => {
-          return navigate('/error'), (<Error {...error.response.data.message} />);
+        .catch( (error: any) => {
+          dispatch(errorRed(error.message)) 
+			 navigate('/error')
         });
     }
   }, [user]);

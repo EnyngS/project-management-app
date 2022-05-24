@@ -34,7 +34,7 @@ const MenuComponent = () => {
 		<div className={style.menu} style = {{display: display} } onClick = {(event)=> {close(event)}}>
 			<div className={style.close} onClick = {(event)=> {close(event)}}></div>
 			<ul className={style.menuListWrapp} onClick={(event)=>event.stopPropagation()}>
-				<li><div  className={style.welBtn}  onClick={onClick}>New board</div></li>
+				<li><div  className={style.welBtn}  onClick={onClick}>{lang[en].header.btn[4]}</div></li>
 				<li><Link className={style.welBtn} to={'/'}>test</Link></li>
 				<li><Link className={style.welBtn} to={'/'}>test</Link></li>
 				<li>

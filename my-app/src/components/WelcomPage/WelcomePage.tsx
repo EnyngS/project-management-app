@@ -1,12 +1,24 @@
-import React, { useContext } from 'react';
+import axios from 'axios';
+import React, { useContext, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { GlobalContext } from '../../context/context';
+import { signin } from '../../store/authReduser';
 import style from './WelcomePage.module.scss';
 
 const WelcomePage = () => {
 	const en = useSelector((state: any)=> state.settings.lang)
 	const lang: any = useContext(GlobalContext)
 	const promo1 = lang[en].welcomePage.promo1[0]
+	const dispatch = useDispatch()
+
+	useEffect(()=>{
+		if(localStorage.getItem('rsApp') !== null){
+			let userSlorage:any = localStorage.getItem('rsApp')
+			dispatch(signin(JSON.parse(userSlorage)))
+		}
+	})
+
   return (
     <div className={style.welcomePage}>
       <div className={style.promo1}>

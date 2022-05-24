@@ -1,7 +1,7 @@
 export type Context = {
 	ru: {
 		header: {
-			btn: [string,string,string,string]
+			btn: [string,string,string,string,string]
 		},
 		welcomePage: {
 			promo1: [string,string,string],
@@ -13,7 +13,7 @@ export type Context = {
 	};
 	en: {
 		header: {
-			btn: [string,string,string,string]
+			btn: [string,string,string,string,string]
 		},
 		welcomePage: {
 			promo1: [string,string,string],
