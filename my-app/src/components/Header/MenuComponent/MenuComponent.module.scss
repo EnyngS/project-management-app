@@ -77,10 +77,10 @@
 			li{
 				list-style: none;
 				padding: 5px 70px;
+				background-color: rgba(255, 174, 0, 0.859);
 				.welBtn {
 					display: flex;
 					border: none;
-					background-color: rgba(255, 174, 0, 0.859);
 					border-radius: 10px;
 					width: max-content;
 					height: max-content;
@@ -91,9 +91,6 @@
 					font-weight: 100;
 					outline: none;
 					margin: 0 5px;
-					&:hover {
-						background-color: rgba(215, 146, 17, 0.578);
-					}
 				}
 				
 			}
@@ -102,7 +99,7 @@
 			}
 			li:hover{
 				transition: all .2s;
-				background-color: rgba(173, 131, 39, 0.548);
+				background-color: rgb(255, 174, 0);
 			}
 		}
 	}

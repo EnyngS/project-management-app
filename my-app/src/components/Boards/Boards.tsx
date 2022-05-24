@@ -30,10 +30,10 @@ const Boards = () => {
     dispatch(GetAllBoards());
   }, [answer]);
 
-  function onClick() {
-    dispatch(setModal(true));
-    dispatch(GetAllBoards());
-  }
+//   function onClick() {
+//     dispatch(setModal(true));
+//     dispatch(GetAllBoards());
+//   }
 
   const cards = boards.map((item: BoardPrevType): JSX.Element => {
     return (
@@ -66,9 +66,9 @@ const Boards = () => {
     <div className={style.wrapper}>
       {isModal ? <ModalBoards /> : ''}
       {confirmModal ? <ConfirmModal /> : ''}
-      <button className={style.btn} onClick={onClick}>
+      {/* <button className={style.btn} onClick={onClick}>
         New board
-      </button>
+      </button> */}
       <div className={style.boards}>{cards}</div>
     </div>
   );
