@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { GlobalContext } from '../../../context/context'
 import { exit } from '../../../store/authReduser'
+import { GetAllBoards, setModal } from '../../../store/sliceBoards'
 import style from './MenuComponent.module.scss'
 
 
@@ -21,6 +22,11 @@ const MenuComponent = () => {
 		event.stopPropagation()
 		setDisplay('none')
 	}
+	function onClick() {
+		setDisplay('none')
+		dispatch(setModal(true));
+		// dispatch(GetAllBoards());
+	 }
 
 
 	return(<div className={style.menuWrapp} onClick = { (event) => {open(event)} }>
@@ -28,7 +34,7 @@ const MenuComponent = () => {
 		<div className={style.menu} style = {{display: display} } onClick = {(event)=> {close(event)}}>
 			<div className={style.close} onClick = {(event)=> {close(event)}}></div>
 			<ul className={style.menuListWrapp} onClick={(event)=>event.stopPropagation()}>
-				<li><Link className={style.welBtn} to={'/'}>test</Link></li>
+				<li><div  className={style.welBtn}  onClick={onClick}>New board</div></li>
 				<li><Link className={style.welBtn} to={'/'}>test</Link></li>
 				<li><Link className={style.welBtn} to={'/'}>test</Link></li>
 				<li>

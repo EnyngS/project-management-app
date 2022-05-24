@@ -1,15 +1,17 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { GlobalContext } from '../../context/context';
-import { exit } from '../../store/authReduser';
+// import { exit } from '../../store/authReduser';
 import { actionLeng } from '../../store/settingsReduser';
 import style from './Header.module.scss';
 import MenuComponent from './MenuComponent/MenuComponent';
 
 
-const Header = () => {
+
+const Header = (props:any) => {
+	const location = useLocation()
 	const [ scroll ,setScroll] = useState('')
 	const dispatch = useDispatch()
 	const auth:boolean = useSelector((state:any)=> state.auth.user.isAuth)
@@ -34,6 +36,8 @@ const Header = () => {
 		dispatch(actionLeng(lang))
 	}
 
+
+
   return (
 	<header className={scroll}>
 		<div className={style.content}>
@@ -46,7 +50,10 @@ const Header = () => {
 				{
 					auth?
 						<>
-							{/* <Link className={style.welBtn} to={'/AuthPage'}>Go to Main Page</Link> */}
+						{(location.pathname === '/main')
+							?<></>
+							:<Link className={style.welBtn} to={'/main'}>Go to Main Page</Link>
+						}
 							<MenuComponent />
 						</>
 					:
