@@ -4,7 +4,7 @@ import style from './Boards.module.scss';
 import { useAppSelector } from '../../store/store';
 import { useAppDispatch } from '../../store/store';
 import { PostBoards, GetAllBoards, deleteBoard } from '../../store/sliceBoards';
-import { BoardPrevType, setModal, setAnswer, setconfirmModal } from '../../store/sliceBoards';
+import { BoardPrevType, setModal, setDeleteItem, setconfirmModal } from '../../store/sliceBoards';
 import { useSelector } from 'react-redux';
 import ModalBoards from './ModalBoard';
 import close from '../../common/img/close.png';
@@ -15,40 +15,24 @@ const Boards = () => {
 
   const isModal = useAppSelector((store) => store.boart.isModal);
   const confirmModal = useAppSelector((store) => store.boart.confirm);
-  const answer = useAppSelector((store) => store.boart.answer);
   const boards = useAppSelector((store) => store.boart.boards);
-  const itemId = useAppSelector((store) => store.boart.itemId);
-  const state = useSelector((state: any) => state.auth.user);
+  const deleteBoard = useAppSelector((store) => store.boart.deleteBoard);
 
   useEffect(() => {
     dispatch(GetAllBoards());
   }, []);
-  //   useEffect(() => {
-  //     dispatch(GetAllBoards());
-  //   });
   useEffect(() => {
     dispatch(GetAllBoards());
-  }, [answer]);
-
-//   function onClick() {
-//     dispatch(setModal(true));
-//     dispatch(GetAllBoards());
-//   }
+  }, [deleteBoard]);
 
   const cards = boards.map((item: BoardPrevType): JSX.Element => {
     return (
       <Link className={style.boards__item} key={item.id} to="/">
         <img
-          onClick={async (e) => {
+          onClick={(e) => {
             e.preventDefault();
-            dispatch(setAnswer(false));
+            dispatch(setDeleteItem(item.id));
             dispatch(setconfirmModal(true));
-
-            if (answer) {
-              dispatch(deleteBoard(item.id));
-            }
-
-            return dispatch(GetAllBoards());
           }}
           className={style.close}
           width="30px"
@@ -65,10 +49,11 @@ const Boards = () => {
   return (
     <div className={style.wrapper}>
       {isModal ? <ModalBoards /> : ''}
+
       {confirmModal ? <ConfirmModal /> : ''}
-      {/* <button className={style.btn} onClick={onClick}>
+      <button className={style.btn} onClick={() => dispatch(setModal(true))}>
         New board
-      </button> */}
+      </button>
       <div className={style.boards}>{cards}</div>
     </div>
   );

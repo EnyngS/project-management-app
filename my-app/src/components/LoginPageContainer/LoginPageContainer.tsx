@@ -59,7 +59,7 @@ const LoginPageContainer: FC = () => {
                 login: userId.login,
               };
               return (
-					  localStorage.setItem('rsApp', `${JSON.stringify(resultUser)}` ),
+                localStorage.setItem('rsApp', `${JSON.stringify(resultUser)}`),
                 dispatch(signin(resultUser)),
                 setUser({
                   isAuth: false,
@@ -74,13 +74,13 @@ const LoginPageContainer: FC = () => {
               );
             })
             .catch((error: any) => {
-					dispatch(errorRed(error.message))
-					navigate('/error')
+              dispatch(errorRed(error.message));
+              navigate('/error');
             });
         })
-        .catch( (error: any) => {
-          dispatch(errorRed(error.message)) 
-			 navigate('/error')
+        .catch((error: any) => {
+          dispatch(errorRed(error.message));
+          navigate('/error');
         });
     }
   }, [user]);
