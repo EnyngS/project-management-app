@@ -1,8 +1,7 @@
 import { createSlice, PayloadAction, createAsyncThunk } from '@reduxjs/toolkit';
-import { useSelector } from 'react-redux';
+import { useAppSelector } from './store';
 
 export type BoardPrevType = { id?: string; title: string; description: string };
-
 
 export const BoardPrev: BoardPrevType[] = [
   {
@@ -30,11 +29,7 @@ const initialState = {
 };
 
 export const PostBoards = createAsyncThunk('boadrs/PostBoards', async function (e: BoardPrevType) {
-	const token:any = useSelector((state:any) => {
-	return(
-		state.auth.user.token
-	)
-})
+  const token = useAppSelector((state) => state.auth.user.token);
   const response = await fetch(`https://quiet-bastion-49623.herokuapp.com/boards`, {
     method: 'POST',
     body: JSON.stringify(e),
@@ -47,11 +42,7 @@ export const PostBoards = createAsyncThunk('boadrs/PostBoards', async function (
 export const deleteBoard = createAsyncThunk(
   'boadrs/deleteBoard',
   async function (id: string | undefined) {
-	const token:any = useSelector((state:any) => {
-		return(
-			state.auth.user.token
-		)
-	})
+    const token = useAppSelector((state) => state.auth.user.token);
     const response = await fetch(`https://quiet-bastion-49623.herokuapp.com/boards/${id}`, {
       method: 'DELETE',
       headers: {
@@ -62,11 +53,7 @@ export const deleteBoard = createAsyncThunk(
 );
 
 export const GetAllBoards = createAsyncThunk('boadrs/GetAllBoards', async function () {
-	const token:any = useSelector((state:any) => {
-	return(
-		state.auth.user.token
-	)
-})
+  const token = useAppSelector((state) => state.auth.user.token);
   const response = await fetch(`https://quiet-bastion-49623.herokuapp.com/boards`, {
     method: 'GET',
     headers: {
