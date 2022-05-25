@@ -30,16 +30,13 @@ const initialState = {
 };
 
 export const PostBoards = createAsyncThunk('boadrs/PostBoards', async function (e: BoardPrevType) {
-	const token:any = useSelector((state:any) => {
-	return(
-		state.auth.user.token
-	)
-})
+	let userJ :any = localStorage.getItem('rsApp')
+	let user : any = JSON.parse(userJ)
   const response = await fetch(`https://quiet-bastion-49623.herokuapp.com/boards`, {
     method: 'POST',
     body: JSON.stringify(e),
     headers: {
-      Authorization: `Bearer ${token}`,
+      Authorization: `Bearer ${user.token}`,
       'Content-Type': 'application/json',
     },
   });
@@ -47,30 +44,24 @@ export const PostBoards = createAsyncThunk('boadrs/PostBoards', async function (
 export const deleteBoard = createAsyncThunk(
   'boadrs/deleteBoard',
   async function (id: string | undefined) {
-	const token:any = useSelector((state:any) => {
-		return(
-			state.auth.user.token
-		)
-	})
+	let userJ :any = localStorage.getItem('rsApp')
+	let user : any = JSON.parse(userJ)
     const response = await fetch(`https://quiet-bastion-49623.herokuapp.com/boards/${id}`, {
       method: 'DELETE',
       headers: {
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${user.token}`,
       },
     });
   }
 );
 
 export const GetAllBoards = createAsyncThunk('boadrs/GetAllBoards', async function () {
-	const token:any = useSelector((state:any) => {
-	return(
-		state.auth.user.token
-	)
-})
+	let userJ :any = localStorage.getItem('rsApp')
+	let user : any = JSON.parse(userJ)
   const response = await fetch(`https://quiet-bastion-49623.herokuapp.com/boards`, {
     method: 'GET',
     headers: {
-      Authorization: `Bearer ${token}`,
+      Authorization: `Bearer ${user.token}`,
       'Content-Type': 'application/json',
     },
   });
