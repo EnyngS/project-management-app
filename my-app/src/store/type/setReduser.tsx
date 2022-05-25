@@ -9,4 +9,7 @@ type develpersType = {
 export type CounterState = {
 	 lang: string,
 	 developers: develpersType[];
+	 error: {
+		message: string;
+	}
  }

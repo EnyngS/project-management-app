@@ -1,7 +1,4 @@
-import { ThunkAction } from 'redux-thunk';
-
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
-
 import { configureStore, combineReducers } from '@reduxjs/toolkit';
 import settingsReduser from './settingsReduser';
 import authReduser from './authReduser';

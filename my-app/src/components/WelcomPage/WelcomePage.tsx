@@ -1,31 +1,44 @@
-import React from 'react';
+import axios from 'axios';
+import React, { useContext, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
+import { GlobalContext } from '../../context/context';
+import { signin } from '../../store/authReduser';
 import style from './WelcomePage.module.scss';
 
 const WelcomePage = () => {
-	const state = useSelector((state: any)=> state.auth.user)
+	const en = useSelector((state: any)=> state.settings.lang)
+	const lang: any = useContext(GlobalContext)
+	const promo1 = lang[en].welcomePage.promo1[0]
+	const dispatch = useDispatch()
+
+	useEffect(()=>{
+		if(localStorage.getItem('rsApp') !== null){
+			let userSlorage:any = localStorage.getItem('rsApp')
+			dispatch(signin(JSON.parse(userSlorage)))
+		}
+	})
+
   return (
     <div className={style.welcomePage}>
       <div className={style.promo1}>
         <div>
-			  <h1>
-				  <b>P</b>roject <b>M</b>anagement <b>A</b>pp
-				  помогает командам эффективно решать рабочие задачи.
+				<h1>
+					<b>{promo1.split(' ')[0][0]}</b>{promo1.split(' ')[0].slice(1)}&ensp;
+					<b>{promo1.split(' ')[1][0]}</b>{promo1.split(' ')[1].slice(1)}&ensp;
+					<b>{promo1.split(' ')[2][0]}</b>{promo1.split(' ')[2].slice(1)}<br />
+					{lang[en].welcomePage.promo1[1]}
 				</h1>
           <span>
-            Работайте в команде, управляйте проектами и выводите продуктивность на новый уровень
-            собственным уникальным способом вместе с <b>Rs PMApp</b>.
+            {lang[en].welcomePage.promo1[2].split(' ').slice(0,-2).join(' ')}&ensp;
+				<b>{(lang[en].welcomePage.promo1[2].split(' ').slice(-2)).join(' ')}</b>
           </span>
         </div>
       </div>
 		<div className={style.promo2}>
 			<div>
-				<h2>Это не просто работа. Это координация действий в команде.</h2>
-				<p>
-						Начните с досок, колонок и карточек, а затем переходите к более 
-						сложным функциям. Управляйте проектами, 
-						упорядочивайте задачи и поддерживайте командный дух.
-				</p>
+				<h2>{lang[en].welcomePage.promo2[0]}</h2>
+				<p>{lang[en].welcomePage.promo2[1]}</p>
 			</div>
       </div>
 		<div className={style.promo3}>

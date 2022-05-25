@@ -1,8 +1,9 @@
 import React, { FC, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { signin } from '../../store/authReduser';
+import { errorRed } from '../../store/settingsReduser';
+import Error from '../Error/Error';
 import AuthPage from './AuthPage/AuthPage';
 const axios = require('axios').default;
 
@@ -66,13 +67,15 @@ const AuthPageContainer:FC = () => {
 					navigate('/main')
 				)
 			})
-			.catch((error: any) => {
-				return(console.log(error))
+			.catch( (error: any) => {
+				dispatch(errorRed(error.message)) 
+				navigate('/error')
+			 });
 			})
-			})
-			.catch(function (error: any) {
-				return(console.log(error))
-			});
+			.catch( (error: any) => {
+				dispatch(errorRed(error.message)) 
+				navigate('/error')
+			 });
 		}
 	}, [user] )
 

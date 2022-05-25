@@ -8,6 +8,9 @@ const initialState: CounterState = {
 		{ id: 2, name: 'Vladislav', url: { git: 'https://github.com/EnyngS' } },
 		{ id: 3, name: 'Miculich Fiodar', url: { git: 'https://github.com/Mikulich-Fedor' } },
 	],
+	error: {
+		message: ''
+	}
 };
 
 const settingsReduser = createSlice({
@@ -17,8 +20,11 @@ const settingsReduser = createSlice({
     actionLeng: (state, actions) => {
       state.lang = actions.payload
     },
+	 errorRed: (state, actions) => {
+		 state.error.message = actions.payload
+	 }
   },
 });
 
-export const { actionLeng } = settingsReduser.actions;
+export const { actionLeng, errorRed } = settingsReduser.actions;
 export default settingsReduser.reducer;
