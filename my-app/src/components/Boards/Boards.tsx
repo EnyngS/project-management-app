@@ -18,12 +18,12 @@ const Boards = () => {
   const boards = useAppSelector((store) => store.boart.boards);
   const deleteBoard = useAppSelector((store) => store.boart.deleteBoard);
 
-  useEffect(() => {
-    dispatch(GetAllBoards());
-  }, []);
-  useEffect(() => {
-    dispatch(GetAllBoards());
-  }, [deleteBoard]);
+  //   useEffect(() => {
+  //     dispatch(GetAllBoards());
+  //   }, []);
+  //   useEffect(() => {
+  //     dispatch(GetAllBoards());
+  //   }, [deleteBoard]);
 
   const cards = boards.map((item: BoardPrevType): JSX.Element => {
     return (
@@ -33,6 +33,7 @@ const Boards = () => {
             e.preventDefault();
             dispatch(setDeleteItem(item.id));
             dispatch(setconfirmModal(true));
+            dispatch(GetAllBoards());
           }}
           className={style.close}
           width="30px"

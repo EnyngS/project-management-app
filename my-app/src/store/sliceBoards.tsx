@@ -3,25 +3,25 @@ import { useAppSelector } from './store';
 
 export type BoardPrevType = { id?: string; title: string; description: string };
 
-// export const BoardPrev: BoardPrevType[] = [
-//   {
-//     id: '9a111e19-24ec-43e1-b8c4-13776842b8d5',
-//     title: 'Homework tasks',
-//     description: 'My board tasks',
-//   },
-//   {
-//     id: '9a111e19-24ec-43e1-b8c4-13776842b8d3',
-//     title: 'Homework tasks',
-//     description: 'My board tasks',
-//   },
-//   {
-//     id: '9a111e19-24ec-43e1-b8c4-13776842b8d4',
-//     title: 'Homework tasks',
-//     description: 'My board tasks',
-//   },
-// ];
+export const BoardPrev: BoardPrevType[] = [
+  {
+    id: '9a111e19-24ec-43e1-b8c4-13776842b8d5',
+    title: 'Homework tasks',
+    description: 'My board tasks',
+  },
+  {
+    id: '9a111e19-24ec-43e1-b8c4-13776842b8d3',
+    title: 'Homework tasks',
+    description: 'My board tasks',
+  },
+  {
+    id: '9a111e19-24ec-43e1-b8c4-13776842b8d4',
+    title: 'Homework tasks',
+    description: 'My board tasks',
+  },
+];
 const initialState = {
-  boards: [{ title: '', description: '' }],
+  boards: BoardPrev,
   isModal: false,
   confirm: false,
   deleteItem: '',
