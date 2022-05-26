@@ -8,9 +8,9 @@ import { setDeleteItem, setconfirmModal } from '../../store/sliceBoards';
 const ConfirmModal = () => {
   const dispatch = useAppDispatch();
   const deleteItem = useAppSelector((store) => store.boart.deleteItem);
-  useEffect(() => {
-    dispatch(GetAllBoards());
-  }, [deleteBoard]);
+  //   useEffect(() => {
+  //     dispatch(GetAllBoards());
+  //   }, [deleteBoard]);
   useEffect(() => {
     return () => {
       dispatch(GetAllBoards());
