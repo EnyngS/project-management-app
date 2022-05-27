@@ -1,4 +1,4 @@
-import React, { MouseEventHandler, ReactElement, useEffect } from 'react';
+import React, { MouseEventHandler, ReactElement, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import style from './Boards.module.scss';
 import { useAppSelector } from '../../store/store';
@@ -16,15 +16,22 @@ const Boards = () => {
   const isModal = useAppSelector((store) => store.boart.isModal);
   const confirmModal = useAppSelector((store) => store.boart.confirm);
   const boards = useAppSelector((store) => store.boart.boards);
-  const deleteBoard = useAppSelector((store) => store.boart.deleteBoard);
 
-  useEffect(() => {
-    dispatch(GetAllBoards());
-  }, []);
-
-  useEffect(() => {
-    dispatch(GetAllBoards());
-  }, [deleteBoard]);
+  const [UModal, setUModal] = useState(false);
+  const [deleteB, setdeleteB] = useState('');
+  //   useEffect(() => {
+  //     dispatch(GetAllBoards());
+  //   }, []);
+  //   useEffect(() => {
+  //     dispatch(GetAllBoards());
+  //   }, [UModal]);
+  function setResponseYes(): void {
+    dispatch(deleteBoard(deleteB));
+    setUModal(false);
+  }
+  function setResponseNo(): void {
+    setUModal(false);
+  }
 
   const cards = boards.map((item: BoardPrevType): JSX.Element => {
     return (<>
@@ -37,8 +44,8 @@ const Boards = () => {
         <img
           onClick={(e) => {
             e.preventDefault();
-            dispatch(setDeleteItem(item.id));
-            dispatch(setconfirmModal(true));
+            setUModal(true);
+            setdeleteB(item.id!);
           }}
           className={style.close}
           width="30px"
@@ -57,7 +64,7 @@ const Boards = () => {
     <div className={style.wrapper}>
       {isModal ? <ModalBoards /> : ''}
 
-      {confirmModal ? <ConfirmModal /> : ''}
+      {UModal ? <ConfirmModal setResponseYes={setResponseYes} setResponseNo={setResponseNo} /> : ''}
       <button className={style.btn} onClick={() => dispatch(setModal(true))}>
         New board
       </button>

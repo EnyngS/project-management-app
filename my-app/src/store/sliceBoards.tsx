@@ -21,7 +21,7 @@ export const BoardPrev: BoardPrevType[] = [
   },
 ];
 const initialState = {
-  boards: [{ title: '', description: '' }],
+  boards: BoardPrev,
   isModal: false,
   confirm: false,
   deleteItem: '',

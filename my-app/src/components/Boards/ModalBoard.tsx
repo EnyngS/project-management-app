@@ -37,11 +37,11 @@ const ModalBoards = () => {
     dispatch(setModal(false));
   }
 
-//   useEffect(() => {
-//     return () => {
-//       dispatch(GetAllBoards());
-//     };
-//   });
+  useEffect(() => {
+    return () => {
+      dispatch(GetAllBoards());
+    };
+  });
 
   return (
     <div className={style.wrapper}>
