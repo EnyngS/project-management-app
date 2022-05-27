@@ -50,7 +50,7 @@ const Header = (props:any) => {
 				{
 					auth?
 						<>
-						{(location.pathname === '/main')
+						{(location.pathname === '/main'||location.pathname === '/task')
 							?<></>
 							:<Link className={style.welBtn} to={'/main'}>{lang[en].header.btn[2]}</Link>
 						}

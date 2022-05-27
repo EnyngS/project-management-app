@@ -9,10 +9,10 @@ import { useSelector } from 'react-redux';
 import ModalBoards from './ModalBoard';
 import close from '../../common/img/close.png';
 import ConfirmModal from '../confirmModal/confirmModal';
+import { setBoardID } from '../../store/taskReduser';
 
 const Boards = () => {
   const dispatch = useAppDispatch();
-
   const isModal = useAppSelector((store) => store.boart.isModal);
   const confirmModal = useAppSelector((store) => store.boart.confirm);
   const boards = useAppSelector((store) => store.boart.boards);
@@ -21,13 +21,19 @@ const Boards = () => {
   useEffect(() => {
     dispatch(GetAllBoards());
   }, []);
+
   useEffect(() => {
     dispatch(GetAllBoards());
   }, [deleteBoard]);
 
   const cards = boards.map((item: BoardPrevType): JSX.Element => {
-    return (
-      <Link className={style.boards__item} key={item.id} to="/">
+    return (<>
+	 	<Link 
+		 className={style.boards__item} 
+		 key={item.id} 
+		 to="/task"
+		 onClick={()=>dispatch(setBoardID(item.id))}
+		 >
         <img
           onClick={(e) => {
             e.preventDefault();
@@ -44,6 +50,7 @@ const Boards = () => {
         <div className={style.boards__title}>{item.title}</div>
         <div className={style.boards__desc}>{item.description}</div>
       </Link>
+	 </>
     );
   });
   return (

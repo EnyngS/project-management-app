@@ -4,11 +4,13 @@ import settingsReduser from './settingsReduser';
 import authReduser from './authReduser';
 
 import sliceBoards from './sliceBoards';
+import taskReduser from './taskReduser';
 
 const roodReducer = combineReducers({
   settings: settingsReduser,
   auth: authReduser,
   boart: sliceBoards,
+  task: taskReduser
 });
 
 const store = configureStore({ reducer: roodReducer });

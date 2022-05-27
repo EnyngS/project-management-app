@@ -24,7 +24,6 @@ const ModalBoards = () => {
 
     onSubmit: (values) => {
       dispatch(PostBoards({ title: values.title, description: values.description }));
-      // dispatch(GetAllBoards());
       dispatch(setModal(false));
       formik.resetForm();
       values = {
@@ -33,14 +32,16 @@ const ModalBoards = () => {
       };
     },
   });
+  
   function ModalClose() {
     dispatch(setModal(false));
   }
-  useEffect(() => {
-    return () => {
-      dispatch(GetAllBoards());
-    };
-  });
+
+//   useEffect(() => {
+//     return () => {
+//       dispatch(GetAllBoards());
+//     };
+//   });
 
   return (
     <div className={style.wrapper}>
@@ -75,7 +76,6 @@ const ModalBoards = () => {
             onBlur={formik.handleBlur}
             value={formik.values.description}
             id="description"
-            // type="text"
           />
         </label>
         <div className={style.error}>

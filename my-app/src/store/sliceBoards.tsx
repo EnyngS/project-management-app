@@ -3,23 +3,23 @@ import { useAppSelector } from './store';
 
 export type BoardPrevType = { id?: string; title: string; description: string };
 
-// export const BoardPrev: BoardPrevType[] = [
-//   {
-//     id: '9a111e19-24ec-43e1-b8c4-13776842b8d5',
-//     title: 'Homework tasks',
-//     description: 'My board tasks',
-//   },
-//   {
-//     id: '9a111e19-24ec-43e1-b8c4-13776842b8d3',
-//     title: 'Homework tasks',
-//     description: 'My board tasks',
-//   },
-//   {
-//     id: '9a111e19-24ec-43e1-b8c4-13776842b8d4',
-//     title: 'Homework tasks',
-//     description: 'My board tasks',
-//   },
-// ];
+export const BoardPrev: BoardPrevType[] = [
+  {
+    id: '9a111e19-24ec-43e1-b8c4-13776842b8d5',
+    title: 'Homework tasks',
+    description: 'My board tasks',
+  },
+  {
+    id: '9a111e19-24ec-43e1-b8c4-13776842b8d3',
+    title: 'Homework tasks',
+    description: 'My board tasks',
+  },
+  {
+    id: '9a111e19-24ec-43e1-b8c4-13776842b8d4',
+    title: 'Homework tasks',
+    description: 'My board tasks',
+  },
+];
 const initialState = {
   boards: [{ title: '', description: '' }],
   isModal: false,
@@ -28,10 +28,34 @@ const initialState = {
   itemId: '',
 };
 
+const sliceBoards = createSlice({
+	name: 'boards',
+	initialState,
+	reducers: {
+	  setModal: (state, action) => {
+		 state.isModal = action.payload;
+	  },
+	  setconfirmModal: (state, action) => {
+		 state.confirm = action.payload;
+	  },
+	  setDeleteItem: (state, action) => {
+		 state.deleteItem = action.payload;
+	  },
+	  setBoard: (state,action) => {
+		  console.log(action.payload)
+		 state.boards = action.payload
+	  }
+	},
+	extraReducers: (builder) => {
+	  builder.addCase(GetAllBoards.fulfilled, (state, action) => {
+		 state.boards = action.payload;
+	  });
+	},
+ });
+
 export const PostBoards = createAsyncThunk('boadrs/PostBoards', async function (e: BoardPrevType) {
   let userJ: any = localStorage.getItem('rsApp');
   let user: any = JSON.parse(userJ);
-
   const response = await fetch(`https://quiet-bastion-49623.herokuapp.com/boards`, {
     method: 'POST',
     body: JSON.stringify(e),
@@ -39,8 +63,9 @@ export const PostBoards = createAsyncThunk('boadrs/PostBoards', async function (
       Authorization: `Bearer ${user.token}`,
       'Content-Type': 'application/json',
     },
-  });
+  })
 });
+
 export const deleteBoard = createAsyncThunk(
   'boadrs/deleteBoard',
   async function (id: string | undefined) {
@@ -72,25 +97,6 @@ export const GetAllBoards = createAsyncThunk('boadrs/GetAllBoards', async functi
   return data;
 });
 
-const sliceBoards = createSlice({
-  name: 'boards',
-  initialState,
-  reducers: {
-    setModal: (state, action) => {
-      state.isModal = action.payload;
-    },
-    setconfirmModal: (state, action) => {
-      state.confirm = action.payload;
-    },
-    setDeleteItem: (state, action) => {
-      state.deleteItem = action.payload;
-    },
-  },
-  extraReducers: (builder) => {
-    builder.addCase(GetAllBoards.fulfilled, (state, action) => {
-      state.boards = action.payload;
-    });
-  },
-});
-export const { setModal, setconfirmModal, setDeleteItem } = sliceBoards.actions;
+
+export const { setModal, setconfirmModal, setDeleteItem, setBoard } = sliceBoards.actions;
 export default sliceBoards.reducer;

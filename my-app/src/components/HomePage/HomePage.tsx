@@ -11,7 +11,7 @@ const HomePage = () => {
 			let userSlorage:any = localStorage.getItem('rsApp')
 			dispatch(signin(JSON.parse(userSlorage)))
 		}
-	})
+	},[])
 
   return (
     <div className={style.homePage}>
