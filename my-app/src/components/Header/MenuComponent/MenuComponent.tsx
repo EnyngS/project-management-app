@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { GlobalContext } from '../../../context/context'
 import { exit } from '../../../store/authReduser'
-import { GetAllBoards, setModal } from '../../../store/sliceBoards'
+import { setModal } from '../../../store/sliceBoards'
 import style from './MenuComponent.module.scss'
 
 

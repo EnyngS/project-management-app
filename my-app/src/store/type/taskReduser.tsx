@@ -1,5 +1,17 @@
 
 export type CurentBoard = {
-	 boardID: string,
-	 columns: [string,string,string,]
+	 boardID: string
+	 columns: [{
+		title:string
+		id: string
+		task:[]
+	 },{
+		title:string
+		id: string
+		task:[]
+	},{
+		title:string
+		id: string
+		task:[]
+	},]
  }
