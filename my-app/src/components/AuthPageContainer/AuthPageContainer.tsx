@@ -54,6 +54,7 @@ const AuthPageContainer:FC = () => {
 					token: res.data.token 
 				}
 				return(
+					localStorage.setItem('rsApp', `${JSON.stringify(result)}`),
 					dispatch(signin(result)),
 					setUser({
 						isAuth: false,

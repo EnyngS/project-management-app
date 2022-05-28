@@ -1,10 +1,10 @@
 import React, { useContext, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { useSelector } from 'react-redux'
-import { Link } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { GlobalContext } from '../../../context/context'
 import { exit } from '../../../store/authReduser'
-import { GetAllBoards, setModal } from '../../../store/sliceBoards'
+import { setModal } from '../../../store/sliceBoards'
 import style from './MenuComponent.module.scss'
 
 
@@ -13,6 +13,8 @@ const MenuComponent = () => {
 	const en:any = useSelector((state:any) => state.settings.lang)
 	const lang:any = useContext(GlobalContext)	
 	const [display, setDisplay] = useState<string>('none')
+	const location = useLocation()
+	const navigate = useNavigate()
 
 	const open:any = (event:any)=> {
 		event.stopPropagation()
@@ -34,9 +36,17 @@ const MenuComponent = () => {
 		<div className={style.menu} style = {{display: display} } onClick = {(event)=> {close(event)}}>
 			<div className={style.close} onClick = {(event)=> {close(event)}}></div>
 			<ul className={style.menuListWrapp} onClick={(event)=>event.stopPropagation()}>
-				<li><div  className={style.welBtn}  onClick={onClick}>{lang[en].header.btn[4]}</div></li>
-				<li><Link className={style.welBtn} to={'/'}>test</Link></li>
-				<li><Link className={style.welBtn} to={'/'}>test</Link></li>
+
+				
+				{
+					(location.pathname === '/task'?
+						<>
+							<li><div  className={style.welBtn}  onClick={()=>{console.log('create task')}}>{lang[en].header.btn[5]}</div></li>
+							<li><div  className={style.welBtn}  onClick={()=>{navigate('/main')}}>{lang[en].header.btn[6]}</div></li>
+						</>
+						:<li><div  className={style.welBtn}  onClick={onClick}>{lang[en].header.btn[4]}</div></li>
+						)
+				}
 				<li>
 					<Link className={style.welBtn} to={'/'} onClick={()=> { dispatch(exit({})) }}>{lang[en].header.btn[3]}</Link>
 				</li>
