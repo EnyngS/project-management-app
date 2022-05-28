@@ -2,6 +2,7 @@ import AuthPageContainer from '../components/AuthPageContainer/AuthPageContainer
 import Error from '../components/Error/Error';
 import HomePage from '../components/HomePage/HomePage';
 import LoginPageContainer from '../components/LoginPageContainer/LoginPageContainer';
+import TaskBoard from '../components/TaskBoard/TaskBoard';
 import WelcomePage from '../components/WelcomPage/WelcomePage';
 
 type routesItem = {
@@ -10,7 +11,7 @@ type routesItem = {
   element: any;
 };
 type IpublicRoutes = [routesItem, routesItem, routesItem, routesItem];
-type IprivateRoutes = [routesItem, routesItem, routesItem, routesItem, routesItem];
+type IprivateRoutes = [routesItem, routesItem, routesItem, routesItem,routesItem ,routesItem];
 
 export const publicRoutes: IpublicRoutes = [
   { id: 1, path: '/', element: <WelcomePage /> },
@@ -25,4 +26,5 @@ export const privateRoutes: IprivateRoutes = [
   { id: 3, path: '/login', element: <LoginPageContainer /> },
   { id: 4, path: '/main', element: <HomePage /> },
   { id: 5, path: '*', element: <Error /> },
+  { id: 5, path: '/task', element: <TaskBoard /> },
 ];
