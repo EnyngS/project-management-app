@@ -1,4 +1,4 @@
-import { Context } from "./type"
+import { Context } from './type';
 
 const language : Context = {
 	ru:{
@@ -20,14 +20,27 @@ const language : Context = {
 					description: 'Реализовал: роутинг, дизайн главная страница, страница входа, страница регистрации, структура проекта, смена языка, анимация header. ',
 				},
 				{
-					name:'Владислав',
-					description: 'Реализовал:',
+					name:'Владислав Сусиков',
+					description: 'Учусь в RS School на курсах: React 2022 Q1, JavaScript/Front-end 2022Q1. Изучаю веб-разрабоку около 1-го года:',
 				}
 			],
 		},
 		LoginAuthPage: {
 			btn: ['Войти','Регистрация']
 		},
+		mainPage:{
+			modalBoard: {
+				name: 'Название',
+				description: 'Описание',
+				btn: 'Создать'
+			}
+		},
+		taskPage:{
+			board: {
+				btnColumn: 'Создать колонку',
+				btnTask: 'Создать задание',
+			}
+		}
 	},
 	en: {
 		header: {
@@ -47,15 +60,30 @@ const language : Context = {
 				name: 'Fiodar Mikulich',
 				description: 'Implemented: routing, main page design, login page, registration page, project structure, language change, header animation. ',
 				},{
-					name: 'Vladislav',
-					description: 'Implemented: '
+					name: 'Vladislav Susikov',
+					description: "I study at RS School on courses: React 2022 Q1, JavaScript/Front-end 2022Q1. I've been learning web development for about 1 year "
 				}
 			]
 		},
 		LoginAuthPage: {
 			btn: ['Login', 'Singup']
 		},
+		mainPage:{
+			modalBoard: {
+				name: 'Name',
+				description: 'Description',
+				btn: 'Create'
+			}
+		},
+		taskPage:{
+			board: {
+				btnColumn: 'Create column',
+				btnTask: 'Create task',
+
+
+			}
+		}
 	},
 }
 
-export default language
+export default language;

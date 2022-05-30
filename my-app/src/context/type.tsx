@@ -19,6 +19,19 @@ export type Context = {
 		},
 		LoginAuthPage: {
 			btn: [string,string]
+		},
+		mainPage:{
+			modalBoard: {
+				name: string,
+				description: string
+				btn: string
+			}
+		},
+		taskPage:{
+			board: {
+				btnColumn: string
+				btnTask: string
+			}
 		}
 	};
 	en: {
@@ -42,6 +55,18 @@ export type Context = {
 		LoginAuthPage: {
 			btn: [string,string]
 		},
-		
+		mainPage:{
+			modalBoard: {
+				name: string,
+				description: string
+				btn: string
+			}
+		},
+		taskPage:{
+			board: {
+				btnColumn: string
+				btnTask: string
+			}
+		}
 	}
 }
