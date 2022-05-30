@@ -8,6 +8,7 @@ import { setModal } from '../../store/sliceBoards';
 import ModalColumn from './ModalColumn/ModalColumn';
 import ConfirmModal from '../confirmModal/confirmModal';
 import close from '../../common/img/close.png';
+
 import Tasks from './Tasks';
 import ModalTask from './ModalTask/ModalTask';
 import { createTask, setTaskModal, getAllTask, createCell } from '../../store/taskReduser';
