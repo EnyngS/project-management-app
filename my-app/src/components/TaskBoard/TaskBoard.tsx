@@ -1,4 +1,4 @@
-import React, { FC, useCallback, useEffect, useState } from 'react';
+import React, { FC, useCallback, useContext, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useAppSelector } from '../../store/store';
 import { useAppDispatch } from '../../store/store';
@@ -12,9 +12,12 @@ import close from '../../common/img/close.png';
 import Tasks from './Tasks';
 import ModalTask from './ModalTask/ModalTask';
 import { createTask, setTaskModal, getAllTask, createCell } from '../../store/taskReduser';
+import { GlobalContext } from '../../context/context';
 
 const TaskBoard: FC = (props) => {
   const dispatch = useAppDispatch();
+  const en:any = useSelector((state:any) => state.settings.lang)
+  const lang:any = useContext(GlobalContext)
 
   //   const boardID = useSelector((state: any) => state.task.boardID);
   const columns = useSelector((state: any) => state.task.columns);
@@ -81,7 +84,7 @@ const TaskBoard: FC = (props) => {
             dispatch(setModal(true));
           }}
         >
-          New column
+         {lang[en].taskPage.board.btnColumn}
         </button>
         {/* ------Создание таска если есть колонка------- */}
         {columns?.[0]?.title && columns.length > 1 && (
@@ -91,7 +94,7 @@ const TaskBoard: FC = (props) => {
               dispatch(setTaskModal(true));
             }}
           >
-            New task
+             {lang[en].taskPage.board.btnTask}
           </button>
         )}
       </div>

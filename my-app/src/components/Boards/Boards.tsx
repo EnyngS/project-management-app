@@ -1,4 +1,4 @@
-import React, { MouseEventHandler, ReactElement, useEffect, useState } from 'react';
+import React, { MouseEventHandler, ReactElement, useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import style from './Boards.module.scss';
 import { useAppSelector } from '../../store/store';
@@ -10,8 +10,11 @@ import ModalBoards from './ModalBoard';
 import close from '../../common/img/close.png';
 import ConfirmModal from '../confirmModal/confirmModal';
 import { setBoardID } from '../../store/taskReduser';
+import { GlobalContext } from '../../context/context';
 
 const Boards = () => {
+	const en:any = useSelector((state:any) => state.settings.lang)
+	const lang:any = useContext(GlobalContext)	
   const dispatch = useAppDispatch();
   const isModal = useAppSelector((store) => store.boart.isModal);
   const boards = useAppSelector((store) => store.boart.boards);
@@ -76,7 +79,7 @@ const Boards = () => {
       {UModal ? <ConfirmModal setResponseYes={setResponseYes} setResponseNo={setResponseNo} /> : ''}
 
       <button className={style.btn} onClick={() => dispatch(setModal(true))}>
-        New board
+        {lang[en].header.btn[4]}
       </button>
       <div className={style.boards}>{cards}</div>
     </div>
