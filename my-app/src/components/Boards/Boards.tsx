@@ -57,7 +57,7 @@ const Boards = () => {
                 e.stopPropagation();
                 e.preventDefault();
                 setUModal(true);
-                setdeleteB(item.id!);
+                item.id && setdeleteB(item.id);
               }}
               className={style.close}
               width="30px"
