@@ -151,9 +151,6 @@ const taskReduser = createSlice({
     setTaskModal: (state, action) => {
       state.taskModal = action.payload;
     },
-    setTasks: (state, action) => {
-      state.tasks = action.payload;
-    },
   },
   extraReducers: (builder) => {
     builder.addCase(getAllCell.fulfilled, (state, action) => {
@@ -165,5 +162,5 @@ const taskReduser = createSlice({
   },
 });
 
-export const { setBoardID, setTaskModal, setTasks } = taskReduser.actions;
+export const { setBoardID, setTaskModal } = taskReduser.actions;
 export default taskReduser.reducer;
