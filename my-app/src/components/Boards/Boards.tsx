@@ -13,8 +13,8 @@ import { setBoardID } from '../../store/taskReduser';
 import { GlobalContext } from '../../context/context';
 
 const Boards = () => {
-	const en:any = useSelector((state:any) => state.settings.lang)
-	const lang:any = useContext(GlobalContext)	
+  const en: any = useSelector((state: any) => state.settings.lang);
+  const lang: any = useContext(GlobalContext);
   const dispatch = useAppDispatch();
   const isModal = useAppSelector((store) => store.boart.isModal);
   const boards = useAppSelector((store) => store.boart.boards);
@@ -54,9 +54,10 @@ const Boards = () => {
             {/* ---Кнопка удалить--- */}
             <img
               onClick={(e) => {
+                e.stopPropagation();
                 e.preventDefault();
                 setUModal(true);
-                setdeleteB(item.id!);
+                item.id && setdeleteB(item.id);
               }}
               className={style.close}
               width="30px"
