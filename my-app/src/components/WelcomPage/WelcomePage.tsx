@@ -1,4 +1,3 @@
-import axios from 'axios';
 import React, { useContext, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
@@ -6,6 +5,7 @@ import { GlobalContext } from '../../context/context';
 import { signin } from '../../store/authReduser';
 import style from './WelcomePage.module.scss';
 import vlad from '../../common/img/vlad.jpg';
+import fedya from '../../common/img/fedya.jpg'
 const WelcomePage = () => {
   const en = useSelector((state: any) => state.settings.lang);
   const lang: any = useContext(GlobalContext);
@@ -45,33 +45,25 @@ const WelcomePage = () => {
           <p>{lang[en].welcomePage.promo2[1]}</p>
         </div>
       </div>
-      <div className={style.promo3}>
-        <img src={vlad} alt="" />
-        <div>
-          <h2>{lang[en].welcomePage.promo3[0]}</h2>
-          <p>{lang[en].welcomePage.promo3[1]}</p>
-        </div>
+		<div className={style.promo3}>
+				<img src={vlad} alt="img" />
+			<div>
+				<h2>{lang[en].welcomePage.developers[1].name}</h2>
+				<p>
+					{lang[en].welcomePage.developers[1].description}
+				</p>
+			</div>
       </div>
-      <div className={style.promo4}>
-        <div>
-          <h2>Lorem ipsum dolor sit</h2>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto placeat voluptas quasi
-            soluta quis, nisi incidunt magni quos obcaecati ad pariatur voluptatibus autem alias
-            illo dolorem dicta ipsa et fuga.
-          </p>
-        </div>
+		<div className={style.promo4}>
+			<img src={fedya} alt="img" />
+			<div>
+				<h2>{lang[en].welcomePage.developers[0].name}</h2>
+				<p>
+				{lang[en].welcomePage.developers[0].description}
+				</p>
+			</div>
       </div>
-      <div className={style.promo5}>
-        <div>
-          <h2>Lorem ipsum dolor sit</h2>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto placeat voluptas quasi
-            soluta quis, nisi incidunt magni quos obcaecati ad pariatur voluptatibus autem alias
-            illo dolorem dicta ipsa et fuga.
-          </p>
-        </div>
-      </div>
+		
     </div>
   );
 };

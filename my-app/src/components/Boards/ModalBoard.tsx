@@ -1,4 +1,4 @@
-import React, { MouseEventHandler, ReactElement, useEffect } from 'react';
+import React, { MouseEventHandler, ReactElement, useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import style from './ModalBoard.module.scss';
 import { useAppSelector } from '../../store/store';
@@ -9,8 +9,11 @@ import { useSelector } from 'react-redux';
 import { useFormik } from 'formik';
 import close from '../../common/img/close.png';
 import * as Yup from 'yup';
+import { GlobalContext } from '../../context/context';
 
 const ModalBoards = () => {
+	const en:any = useSelector((state:any) => state.settings.lang)
+	const lang:any = useContext(GlobalContext)
   const dispatch = useAppDispatch();
   const formik = useFormik({
     initialValues: {
@@ -55,7 +58,7 @@ const ModalBoards = () => {
           alt="Close"
         />
         <label htmlFor="title">
-          Title board
+		  {lang[en].mainPage.modalBoard.name}
           <input
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
@@ -68,7 +71,7 @@ const ModalBoards = () => {
           {formik.touched.title && formik.errors.title ? formik.errors.title : null}
         </div>
         <label htmlFor="description">
-          Description board
+		  {lang[en].mainPage.modalBoard.description}
           <textarea
             cols={20}
             rows={3}
@@ -84,7 +87,7 @@ const ModalBoards = () => {
             : null}
         </div>
 
-        <input type="submit" value="Create" />
+        <input type="submit" value={lang[en].mainPage.modalBoard.btn} />
       </form>
     </div>
   );
