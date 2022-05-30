@@ -39,8 +39,19 @@ const language : Context = {
 			board: {
 				btnColumn: 'Создать колонку',
 				btnTask: 'Создать задание',
+			},
+			modalColumn:{
+				nameColumn: 'Название колонки',
+				btnColumn: 'Создать колонку',
+			},
+			modalTask:{
+				nameTask: 'Название задания',
+				descriptionTask: 'Описание задания',
+				selectColumn: 'Выберите колонку',
+				btnTask: 'Создать задания',
 			}
-		}
+		},
+		confirmModal:['Вы уверены ?','Да','Нет']
 	},
 	en: {
 		header: {
@@ -79,10 +90,19 @@ const language : Context = {
 			board: {
 				btnColumn: 'Create column',
 				btnTask: 'Create task',
-
-
+			},
+			modalColumn:{
+				nameColumn: 'Name column',
+				btnColumn: 'Create column',
+			},
+			modalTask:{
+				nameTask: 'Name Task',
+				descriptionTask: 'Description Task',
+				selectColumn: 'Select column',
+				btnTask: 'Create Task',
 			}
-		}
+		},
+		confirmModal:['Are you sure?','Yes','No']
 	},
 }
 

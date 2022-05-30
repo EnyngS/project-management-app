@@ -31,8 +31,19 @@ export type Context = {
 			board: {
 				btnColumn: string
 				btnTask: string
+			},
+			modalColumn:{
+				nameColumn: string
+				btnColumn: string
+			},
+			modalTask:{
+				nameTask: string
+				descriptionTask: string
+				selectColumn: string
+				btnTask: string
 			}
-		}
+		},
+		confirmModal:[string, string, string]
 	};
 	en: {
 		header: {
@@ -66,7 +77,18 @@ export type Context = {
 			board: {
 				btnColumn: string
 				btnTask: string
+			},
+			modalColumn:{
+				nameColumn: string
+				btnColumn: string
+			},
+			modalTask:{
+				nameTask: string
+				descriptionTask: string
+				selectColumn: string
+				btnTask: string
 			}
-		}
+		},
+		confirmModal:[string, string, string]
 	}
 }
