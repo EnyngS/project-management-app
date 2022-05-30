@@ -22,9 +22,10 @@ const ModalBoards = () => {
       description: Yup.string().max(40, 'Must be 20 characters or less').required('Required'),
     }),
 
-    onSubmit: (values) => {
-      dispatch(PostBoards({ title: values.title, description: values.description }));
-      dispatch(setModal(false));
+    onSubmit: (values):void => {
+
+		dispatch(PostBoards({ title: values.title, description: values.description }))
+		dispatch(setModal(false)) 
       formik.resetForm();
       values = {
         title: '',
