@@ -3,25 +3,25 @@ import { useAppSelector } from './store';
 
 export type BoardPrevType = { id?: string; title: string; description: string };
 
-export const BoardPrev: BoardPrevType[] = [
-  {
-    id: '9a111e19-24ec-43e1-b8c4-13776842b8d5',
-    title: 'Homework tasks',
-    description: 'My board tasks',
-  },
-  {
-    id: '9a111e19-24ec-43e1-b8c4-13776842b8d3',
-    title: 'Homework tasks',
-    description: 'My board tasks',
-  },
-  {
-    id: '9a111e19-24ec-43e1-b8c4-13776842b8d4',
-    title: 'Homework tasks',
-    description: 'My board tasks',
-  },
-];
+// export const BoardPrev: BoardPrevType[] = [
+//   {
+//     id: '9a111e19-24ec-43e1-b8c4-13776842b8d5',
+//     title: 'Homework tasks',
+//     description: 'My board tasks',
+//   },
+//   {
+//     id: '9a111e19-24ec-43e1-b8c4-13776842b8d3',
+//     title: 'Homework tasks',
+//     description: 'My board tasks',
+//   },
+//   {
+//     id: '9a111e19-24ec-43e1-b8c4-13776842b8d4',
+//     title: 'Homework tasks',
+//     description: 'My board tasks',
+//   },
+// ];
 const initialState = {
-  boards: BoardPrev,
+  boards: [],
   isModal: false,
   confirm: false,
   deleteItem: '',
@@ -29,29 +29,25 @@ const initialState = {
 };
 
 const sliceBoards = createSlice({
-	name: 'boards',
-	initialState,
-	reducers: {
-	  setModal: (state, action) => {
-		 state.isModal = action.payload;
-	  },
-	  setconfirmModal: (state, action) => {
-		 state.confirm = action.payload;
-	  },
-	  setDeleteItem: (state, action) => {
-		 state.deleteItem = action.payload;
-	  },
-	  setBoard: (state,action) => {
-		  console.log(action.payload)
-		 state.boards = action.payload
-	  }
-	},
-	extraReducers: (builder) => {
-	  builder.addCase(GetAllBoards.fulfilled, (state, action) => {
-		 state.boards = action.payload;
-	  });
-	},
- });
+  name: 'boards',
+  initialState,
+  reducers: {
+    setModal: (state, action) => {
+      state.isModal = action.payload;
+    },
+    setconfirmModal: (state, action) => {
+      state.confirm = action.payload;
+    },
+    setDeleteItem: (state, action) => {
+      state.deleteItem = action.payload;
+    },
+  },
+  extraReducers: (builder) => {
+    builder.addCase(GetAllBoards.fulfilled, (state, action) => {
+      state.boards = action.payload;
+    });
+  },
+});
 
 export const PostBoards = createAsyncThunk('boadrs/PostBoards', async function (e: BoardPrevType) {
   let userJ: any = localStorage.getItem('rsApp');
@@ -63,7 +59,7 @@ export const PostBoards = createAsyncThunk('boadrs/PostBoards', async function (
       Authorization: `Bearer ${user.token}`,
       'Content-Type': 'application/json',
     },
-  })
+  });
 });
 
 export const deleteBoard = createAsyncThunk(
@@ -93,10 +89,9 @@ export const GetAllBoards = createAsyncThunk('boadrs/GetAllBoards', async functi
     },
   });
 
-  const data: BoardPrevType[] = await response.json();
+  const data: any = await response.json();
   return data;
 });
 
-
-export const { setModal, setconfirmModal, setDeleteItem, setBoard } = sliceBoards.actions;
+export const { setModal, setconfirmModal, setDeleteItem } = sliceBoards.actions;
 export default sliceBoards.reducer;
