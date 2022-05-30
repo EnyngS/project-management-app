@@ -47,7 +47,7 @@ const Boards = () => {
             key={item.id}
             to="/task"
             onClick={() => {
-              localStorage.setItem('BoardID', item.id!);
+              item.id && localStorage.setItem('BoardID', item.id);
               dispatch(setBoardID(item.id));
             }}
           >
