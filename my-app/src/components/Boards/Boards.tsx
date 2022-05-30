@@ -14,17 +14,17 @@ import { setBoardID } from '../../store/taskReduser';
 const Boards = () => {
   const dispatch = useAppDispatch();
   const isModal = useAppSelector((store) => store.boart.isModal);
-  const confirmModal = useAppSelector((store) => store.boart.confirm);
   const boards = useAppSelector((store) => store.boart.boards);
 
   const [UModal, setUModal] = useState(false);
   const [deleteB, setdeleteB] = useState('');
-  //   useEffect(() => {
-  //     dispatch(GetAllBoards());
-  //   }, []);
-  //   useEffect(() => {
-  //     dispatch(GetAllBoards());
-  //   }, [UModal]);
+  useEffect(() => {
+    dispatch(GetAllBoards());
+  }, []);
+  useEffect(() => {
+    dispatch(GetAllBoards());
+  }, [UModal]);
+  //   -----------------Удаление борда после ответа от модалки
   function setResponseYes(): void {
     dispatch(deleteBoard(deleteB));
     setUModal(false);
@@ -32,39 +32,49 @@ const Boards = () => {
   function setResponseNo(): void {
     setUModal(false);
   }
-
-  const cards = boards.map((item: BoardPrevType): JSX.Element => {
-    return (<>
-	 	<Link 
-		 className={style.boards__item} 
-		 key={item.id} 
-		 to="/task"
-		 onClick={()=>dispatch(setBoardID(item.id))}
-		 >
-        <img
-          onClick={(e) => {
-            e.preventDefault();
-            setUModal(true);
-            setdeleteB(item.id!);
-          }}
-          className={style.close}
-          width="30px"
-          height="30px"
-          src={close}
-          alt="Close"
-        />
-
-        <div className={style.boards__title}>{item.title}</div>
-        <div className={style.boards__desc}>{item.description}</div>
-      </Link>
-	 </>
-    );
-  });
+  // ------------------------------------
+  const cards =
+    boards &&
+    boards[0]?.title &&
+    boards.map((item: BoardPrevType): JSX.Element => {
+      return (
+        <>
+          <Link
+            className={style.boards__item}
+            key={item.id}
+            to="/task"
+            onClick={() => {
+              localStorage.setItem('BoardID', item.id!);
+              dispatch(setBoardID(item.id));
+            }}
+          >
+            {/* ---Кнопка удалить--- */}
+            <img
+              onClick={(e) => {
+                e.preventDefault();
+                setUModal(true);
+                setdeleteB(item.id!);
+              }}
+              className={style.close}
+              width="30px"
+              height="30px"
+              src={close}
+              alt="Close"
+            />
+            {/* ------------- */}
+            <div className={style.boards__title}>{item.title}</div>
+            <div className={style.boards__desc}>{item.description}</div>
+          </Link>
+        </>
+      );
+    });
   return (
     <div className={style.wrapper}>
+      {/* ------Создание борда------- */}
       {isModal ? <ModalBoards /> : ''}
-
+      {/* ------Удаление борда------- */}
       {UModal ? <ConfirmModal setResponseYes={setResponseYes} setResponseNo={setResponseNo} /> : ''}
+
       <button className={style.btn} onClick={() => dispatch(setModal(true))}>
         New board
       </button>

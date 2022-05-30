@@ -1,99 +1,109 @@
-import axios from 'axios'
-import React,{FC, useCallback, useEffect} from 'react'
-import { useDispatch } from 'react-redux'
-import { useSelector } from 'react-redux'
-import { setCell, getAllTask } from '../../store/taskReduser'
-import style from './TaskBoard.module.scss'
+import React, { FC, useCallback, useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+import { useAppSelector } from '../../store/store';
+import { useAppDispatch } from '../../store/store';
+import { getAllCell, deleteColumn } from '../../store/taskReduser';
+import style from './TaskBoard.module.scss';
+import { setModal } from '../../store/sliceBoards';
+import ModalColumn from './ModalColumn/ModalColumn';
+import ConfirmModal from '../confirmModal/confirmModal';
+import close from '../../common/img/close.png';
+import Tasks from './Tasks';
+import ModalTask from './ModalTask/ModalTask';
+import { createTask, setTaskModal, getAllTask, createCell } from '../../store/taskReduser';
 
-const TaskBoard:FC = (props) => {
-	const dispatch = useDispatch()
-	const userId = useSelector((state:any) => state.auth.user.id)
-	const hash = useSelector((state:any) => state.auth.user.token)
-	const boardID = useSelector((state:any) => state.task.boardID)
-	const columns = useSelector((state:any) => state.task.columns)
-	console.log('boardID: ', boardID)
-	console.log('columns: ', columns)
+const TaskBoard: FC = (props) => {
+  const dispatch = useAppDispatch();
 
-	// createCell
-	async function createCell(title:any, order:any){
-		await axios({
-				method: 'POST',
-				headers: { Authorization: `Bearer ${hash}`},
-				data:{
-				"title": title,
-				"order": order},
-				url: `https://quiet-bastion-49623.herokuapp.com/boards/${boardID}/columns`
-				}).then(res =>{
-					dispatch( setCell(res.data) )
-				})
-	}
+  //   const boardID = useSelector((state: any) => state.task.boardID);
+  const columns = useSelector((state: any) => state.task.columns);
+  const taskModal = useSelector((state: any) => state.task.taskModal);
+  const isModal = useAppSelector((store) => store.boart.isModal);
+  let BoardID: any = localStorage.getItem('BoardID');
 
-	async function getCell() {
-		await axios.get(`https://quiet-bastion-49623.herokuapp.com/boards/${boardID}/columns`,{
-			headers: {
-				Authorization: `Bearer ${hash}`,
-			 },
-		})
-		.then((res:any) =>{
-			if(res.data.length === 0){
-				return columns.forEach(async(el:any, id:any) => {
-						await createCell(el.title, id+1)
-						})
-			} else {
-				return res.data.forEach((el:any) => dispatch(setCell(el)))
-			}
-		})
-	}
+  const [UModal, setUModal] = useState(false);
+  const [deleteC, setdeleteC] = useState('');
+  //   -----------------Удаление колонки после ответа от модалки(Подьем состояния из универсальной модалки)
+  function setResponseYes(): void {
+    dispatch(deleteColumn(deleteC));
+    setUModal(false);
+  }
+  function setResponseNo(): void {
+    setUModal(false);
+  }
+  // ---------------------------------------
+  useEffect(() => {
+    dispatch(createCell({ title: 'main', order: 0, boardID: BoardID }));
+    dispatch(getAllCell());
+    dispatch(getAllTask(columns?.filter((i: any) => i.order == 0)[0].id));
+  }, []);
+  useEffect(() => {
+    dispatch(getAllCell());
+    columns && dispatch(getAllTask(columns.filter((i: any) => i.order == 0)[0].id));
+  }, [UModal]);
 
-	async function createTask() {
-		await axios({
-			method: 'POST',
-			headers: { Authorization: `Bearer ${hash}`},
-			data:{
-				"title": "name task2",
-				"done": false,
-				"order": 1,
-				"description": "Domestic test2",
-				"userId": userId
-			 },
-			url: `https://quiet-bastion-49623.herokuapp.com/boards/${boardID}/columns/${columns[0].id}/tasks`
-			}).then(res =>{
-			console.log(res.data)
-			})
-	}
+  const columnsAll =
+    columns &&
+    columns[0]?.title &&
+    columns.map((item: any): JSX.Element => {
+      if (!item.order) return <></>;
+      return (
+        <div key={item.id} className={style.cellWrapp}>
+          {/* ---Кнопка удалить--- */}
+          <img
+            onClick={(e) => {
+              e.preventDefault();
+              setUModal(true);
+              setdeleteC(item.id!);
+            }}
+            className={style.close}
+            width="30px"
+            height="30px"
+            src={close}
+            alt="Close"
+          />
+          <h4>{item.title}</h4>
+          {/* ---------Таски для колонки--------- */}
+          <Tasks key={item.id} order={item.order} />
+        </div>
+      );
+    });
 
-	async function getTask(columnID:any) {
-			await axios.get(`https://quiet-bastion-49623.herokuapp.com/boards/${boardID}/columns/${columnID}/tasks`,{
-				headers: {
-					Authorization: `Bearer ${hash}`,
-					},	
-			}).then((res:any)=>{
-				if(res.data.length > 0){
-					dispatch(getAllTask([res.data,res.data[0].order-1]))
-				}
-			})
-	}
+  return (
+    <>
+      <div className={style.wrap_btn}>
+        {/* ------Создание колонки------- */}
+        <button
+          className={style.btn}
+          onClick={() => {
+            dispatch(getAllCell());
+            dispatch(setModal(true));
+          }}
+        >
+          New column
+        </button>
+        {/* ------Создание таска если есть колонка------- */}
+        {columns?.[0]?.title && columns.length > 1 && (
+          <button
+            className={style.btn}
+            onClick={() => {
+              dispatch(setTaskModal(true));
+            }}
+          >
+            New task
+          </button>
+        )}
+      </div>
+      {/* ------Модалки колонки, таска и удаления колонки------- */}
+      {isModal ? <ModalColumn /> : ''}
+      {taskModal ? <ModalTask /> : ''}
+      {UModal ? <ConfirmModal setResponseYes={setResponseYes} setResponseNo={setResponseNo} /> : ''}
+      {/* ----------------------------------- */}
+      <div className={style.taskWrapp}>
+        <div className={style.tabelBoard}>{columnsAll}</div>
+      </div>
+    </>
+  );
+};
 
-	useEffect(()=>{
-		// get or create Cell
-		getCell()
-		// columns.forEach((el:any)=>{
-		// 	getTask(el.id)
-		// })
-	},[])
-
-	return(<div className={style.taskWrapp}>
-		<div className={style.tabelBoard}>
-			<div className={style.cellWrapp}><h4>Задания</h4>
-				{/* <div className={style.element}>{columns[0].task[0].description}</div>
-				<div className={style.element}>{columns[0].task[0].description}</div> */}
-			</div>
-			<div className={style.cellWrapp}><h4>В работе</h4>
-			task</div>
-			<div className={style.cellWrapp}><h4>Завершено</h4>
-			task</div>
-		</div>
-	</div>)
-}
-
-export default TaskBoard
+export default TaskBoard;

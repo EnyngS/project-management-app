@@ -33,7 +33,9 @@ const LoginPageContainer: FC = () => {
   });
 
   useEffect(() => {
-    if (user.isAuth) {
+    //   function move()
+    let isMounted = true;
+    if (user.isAuth && isMounted) {
       axios
         .post('https://quiet-bastion-49623.herokuapp.com/signin', {
           login: user.login,
@@ -69,10 +71,11 @@ const LoginPageContainer: FC = () => {
                   email: '',
                   password: '',
                   token: '',
-                }),
-                navigate('/main')
+                })
+                //  navigate('/main')
               );
             })
+            .then(() => setTimeout(() => navigate('/main'), 1000))
             .catch((error: any) => {
               dispatch(errorRed(error.message));
               navigate('/error');
@@ -83,6 +86,11 @@ const LoginPageContainer: FC = () => {
           navigate('/error');
         });
     }
+    //  ChatAPI.subscribeToFriendStatus(move);
+    //  move()
+    return () => {
+      isMounted = false;
+    };
   }, [user]);
 
   return <LoginPage addUser={setUser} />;
