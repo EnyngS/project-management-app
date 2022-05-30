@@ -5,7 +5,17 @@ export type Context = {
 		},
 		welcomePage: {
 			promo1: [string,string,string],
-			promo2: [ string,string ] 
+			promo2: [ string,string ],
+			developers:[
+				{
+					name: string,
+					description: string,
+				},
+				{
+					name: string,
+					description: string,
+				}
+			]
 		},
 		LoginAuthPage: {
 			btn: [string,string]
@@ -17,7 +27,17 @@ export type Context = {
 		},
 		welcomePage: {
 			promo1: [string,string,string],
-			promo2: [ string, string ] 
+			promo2: [ string, string ],
+			developers:[
+				{
+					name: string,
+					description: string,
+				},
+				{
+					name: string,
+					description: string,
+				}
+			]
 		},
 		LoginAuthPage: {
 			btn: [string,string]

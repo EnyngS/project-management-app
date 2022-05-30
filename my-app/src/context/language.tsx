@@ -14,7 +14,16 @@ const language : Context = {
 			promo2: [
 				'Это не просто работа. Это координация действий в команде.',
 				'Начните с досок, колонок и карточек, а затем переходите к более сложным функциям. Управляйте проектами, упорядочивайте задачи и поддерживайте командный дух.'
-			] 
+			],
+			developers:[{
+					name: 'Федор Микулич',
+					description: 'Реализовал: роутинг, дизайн главная страница, страница входа, страница регистрации, структура проекта, смена языка, анимация header. ',
+				},
+				{
+					name:'Владислав',
+					description: 'Реализовал:',
+				}
+			],
 		},
 		LoginAuthPage: {
 			btn: ['Войти','Регистрация']
@@ -33,7 +42,15 @@ const language : Context = {
 			promo2: [
 				"It's not just a job. This is team coordination.",
 				'Start with boards, columns and cards and then move on to more advanced features. Manage projects, organize tasks and maintain team spirit.'
-			] 
+			],
+			developers:[{
+				name: 'Fiodar Mikulich',
+				description: 'Implemented: routing, main page design, login page, registration page, project structure, language change, header animation. ',
+				},{
+					name: 'Vladislav',
+					description: 'Implemented: '
+				}
+			]
 		},
 		LoginAuthPage: {
 			btn: ['Login', 'Singup']
