@@ -31,7 +31,7 @@ const TaskBoard: FC = (props) => {
   function setResponseNo(): void {
     setUModal(false);
   }
-  // ---------------------------------------
+  // -----------Получаем всю инфу при монтировании и изменении статуса моалки----------------------------
   useEffect(() => {
     dispatch(createCell({ title: 'main', order: 0, boardID: BoardID }));
     dispatch(getAllCell());
@@ -41,7 +41,7 @@ const TaskBoard: FC = (props) => {
     dispatch(getAllCell());
     columns && dispatch(getAllTask(columns.filter((i: any) => i.order == 0)[0].id));
   }, [UModal]);
-
+  // ------------------------------------
   const columnsAll =
     columns &&
     columns[0]?.title &&
