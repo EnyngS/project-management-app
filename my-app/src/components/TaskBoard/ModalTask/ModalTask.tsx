@@ -1,4 +1,4 @@
-import React, { MouseEventHandler, ReactElement, useEffect } from 'react';
+import React, { MouseEventHandler, ReactElement, useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import style from './ModalTask.module.scss';
 import { useAppSelector } from '../../../store/store';
@@ -8,9 +8,12 @@ import { useFormik } from 'formik';
 import close from '../../../common/img/close.png';
 import * as Yup from 'yup';
 import { createTask, setTaskModal, getAllTask } from '../../../store/taskReduser';
+import { GlobalContext } from '../../../context/context';
 
 const ModalTask = () => {
   const dispatch = useAppDispatch();
+  const en:any = useSelector((state:any) => state.settings.lang)
+	const lang:any = useContext(GlobalContext)
 
   const tasks = useSelector((state: any) => state.task.tasks);
   const columns = useSelector((state: any) => state.task.columns);
@@ -78,7 +81,7 @@ const ModalTask = () => {
           alt="Close"
         />
         <label htmlFor="title">
-          Title task
+          {lang[en].taskPage.modalTask.nameTask}
           <input
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
@@ -91,7 +94,7 @@ const ModalTask = () => {
           {formik.touched.title && formik.errors.title ? formik.errors.title : null}
         </div>
         <label htmlFor="description">
-          Description task
+		  {lang[en].taskPage.modalTask.descriptionTask}
           <textarea
             cols={20}
             rows={3}
@@ -107,7 +110,7 @@ const ModalTask = () => {
             : null}
         </div>
         {/* -------------ВЫбор колонки для таска------------------ */}
-        <label htmlFor="select">Select column </label>
+        <label htmlFor="select">{lang[en].taskPage.modalTask.selectColumn}</label>
         <select
           id="select"
           className={style.select}
@@ -118,7 +121,7 @@ const ModalTask = () => {
           {select}
         </select>
 
-        <input type="submit" value="Create" />
+        <input type="submit" value={lang[en].taskPage.modalTask.btnTask}/>
       </form>
     </div>
   );

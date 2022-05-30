@@ -1,4 +1,4 @@
-import React, { MouseEventHandler, ReactElement, useEffect } from 'react';
+import React, { MouseEventHandler, ReactElement, useContext, useEffect } from 'react';
 import style from './ModalColumn.module.scss';
 import { useAppDispatch } from '../../../store/store';
 import { GetAllBoards } from '../../../store/sliceBoards';
@@ -8,8 +8,11 @@ import { useFormik } from 'formik';
 import close from '../../../common/img/close.png';
 import * as Yup from 'yup';
 import { createCell, getAllCell } from '../../../store/taskReduser';
+import { GlobalContext } from '../../../context/context';
 
 const ModalColumn = () => {
+	const en:any = useSelector((state:any) => state.settings.lang)
+	const lang:any = useContext(GlobalContext)
   const dispatch = useAppDispatch();
   const columns = useSelector((state: any) => state.task.columns);
 
@@ -57,7 +60,7 @@ const ModalColumn = () => {
           alt="Close"
         />
         <label htmlFor="title">
-          Title column
+		  {lang[en].taskPage.modalColumn.nameColumn}
           <input
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
@@ -70,7 +73,7 @@ const ModalColumn = () => {
           {formik.touched.title && formik.errors.title ? formik.errors.title : null}
         </div>
 
-        <input type="submit" value="Create" />
+        <input type="submit" value={lang[en].taskPage.modalColumn.btnColumn} />
       </form>
     </div>
   );
