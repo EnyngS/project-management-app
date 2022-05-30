@@ -41,7 +41,6 @@ const MenuComponent = () => {
 				{
 					(location.pathname === '/task'?
 						<>
-							<li><div  className={style.welBtn}  onClick={()=>{console.log('create task')}}>{lang[en].header.btn[5]}</div></li>
 							<li><div  className={style.welBtn}  onClick={()=>{navigate('/main')}}>{lang[en].header.btn[6]}</div></li>
 						</>
 						:<li><div  className={style.welBtn}  onClick={onClick}>{lang[en].header.btn[4]}</div></li>
